@@ -36,7 +36,7 @@
     {
       "name": "api-performance",
       "urls": [
-        "api/v1/**"
+        "api/v2/**"
       ],
       "version": 2,
       "cacheConfig": {

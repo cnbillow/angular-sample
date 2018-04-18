@@ -23,7 +23,9 @@ export class UserItemComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.user = result;
+      if (result) {
+        this.user = result;
+      }
     });
   }
 
