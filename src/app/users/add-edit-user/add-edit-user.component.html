@@ -1,0 +1,36 @@
+
+ <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]= "user.name">
+</mat-form-field>
+<mat-slide-toggle [checked]="user.active" [(ngModel)]= "user.active">
+</mat-slide-toggle>
+<!-- <img class="md-card-image"  mat-card-image src="{{user.url}}" alt="{{user.name}}"> -->
+<mat-form-field>
+    <input matInput placeholder="Role" [(ngModel)]= "user.role">
+</mat-form-field>
+
+<mat-form-field>
+    <input matInput placeholder="Mail" [(ngModel)]= "user.mail">
+</mat-form-field>
+
+
+<mat-form-field>
+    <input matInput placeholder="Phone Number" [(ngModel)]= "user.phoneNumber">
+</mat-form-field>
+
+
+<mat-form-field>
+    <input matInput placeholder="Location" [(ngModel)]= "user.location">
+</mat-form-field>
+
+
+<mat-form-field>
+    <input matInput placeholder="Join Date" [(ngModel)]= "user.joinDate">
+</mat-form-field>
+
+
+<mat-form-field>
+        <input matInput placeholder="Profile Url" [(ngModel)]= "user.url">
+    </mat-form-field>
+    
+<button mat-button (click)="save()">SAVE</button>

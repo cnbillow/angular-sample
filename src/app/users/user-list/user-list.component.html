@@ -1,0 +1,25 @@
+<div class="user-list-actions">
+    <button mat-button (click)="createUser()">
+        Add User
+        <mat-icon>add_circle</mat-icon>
+      </button>
+      
+      <mat-form-field>
+        <input 
+          type="string" 
+          matInput 
+          placeholder="Search" 
+          (keyup)="searchTerm.next($event.target.value)">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+</div>
+
+<div class="user-list-container">
+  <app-user-item 
+    *ngFor="let user of users"
+    [user] = user
+    (userRemoved)="userRemoved($event)">
+  </app-user-item>
+</div>

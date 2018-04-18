@@ -1,0 +1,27 @@
+.example-card {
+    width: 370px;
+    margin: 10px;
+    padding: 0px;
+    mat-card-header {
+        align-items: baseline;
+        background: #283593;
+        color: white;
+    
+    }
+
+    mat-card-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .md-card-image {
+        width: 80px;
+        height: 80px;
+        margin: 0;
+    }
+    
+    mat-slide-toggle {
+        display: initial;
+    }
+}
