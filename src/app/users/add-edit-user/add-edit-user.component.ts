@@ -26,12 +26,11 @@ import { User } from '../models/user.model';
     public save() {
       if (this.user.isNewUser) {
         this.userService.save(this.user).subscribe((res) => {
-          this.dialogRef.close(this.user);
+          this.dialogRef.close(res);
         });
       } else {
         this.userService.update(this.user).subscribe((res) => {
-          console.log("|")
-          this.dialogRef.close();
+          this.dialogRef.close(res);
         });
       }
 

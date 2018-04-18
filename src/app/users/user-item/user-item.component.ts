@@ -23,7 +23,7 @@ export class UserItemComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      this.user = result;
     });
   }
 
