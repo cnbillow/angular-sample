@@ -16,9 +16,6 @@ enableProdMode();
 const app = express();
 
 const PORT = process.env.PORT || 4000;
-const PORTssl = process.env.PORT || 8443;
-
-const HOST = process.env.HOST || '';
 
 const DIST_FOLDER = join(process.cwd(), 'dist');
 
@@ -31,7 +28,7 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const UserSchema = mongoose.Schema({
-  id: Number, 
+  id: Number,
   name: String ,
   url: String,
   active: Boolean,
