@@ -14,7 +14,8 @@
   "scripts": {
     "ng": "ng",
     "server": "node bin/www",
-    "start": "npm run build:universal && npm run serve:universal",
+    "start": "node server.js",
+    "postinstall": "npm run build:universal",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
