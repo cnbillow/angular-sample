@@ -24,7 +24,7 @@ const DIST_FOLDER = join(process.cwd(), 'dist');
 
 // mongoose
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/management');
+mongoose.connect('mongodb://test:test@ds147589.mlab.com:47589/heroku_rwft30zq');
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 // Get the default connection
