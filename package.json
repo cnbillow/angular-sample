@@ -10,7 +10,7 @@
   "scripts": {
     "ng": "ng",
     "server": "node bin/www",
-    "start": "ng serve",
+    "start": "npm run build:universal && npm run serve:universal",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
