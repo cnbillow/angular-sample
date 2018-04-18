@@ -22,6 +22,7 @@ const DIST_FOLDER = join(process.cwd(), 'dist');
 // mongoose
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://test:test@ds147589.mlab.com:47589/heroku_rwft30zq');
+// mongoose.connect('mongodb://127.0.0.1:27017/management');
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 // Get the default connection
@@ -79,27 +80,27 @@ app.get('/api/v1/users', function(req, res) {
     });
   } else {
     UserModel.find((err, resp) => {
-      res.send(resp)
-    })
+      res.send(resp);
+    });
   }
 });
 
 app.put('/api/v1/users', function(req, res) {
   UserModel.findByIdAndUpdate(req.body._id, req.body, function (err, resp) {
-    res.sendStatus(200)
-  })
+    res.send(resp);
+  });
 });
 
 app.post('/api/v1/users', function(req, res) {
-  UserModel.create(req.body, function (err, resp) {
-    res.sendStatus(200)
-  })
+  UserModel.create(req.body, function(err, resp) {
+    res.send(resp);
+  });
 });
 
 app.delete('/api/v1/users/:_id', function(req, res) {
   UserModel.findByIdAndRemove(req.params._id, function (err, resp) {
-    res.sendStatus(200)
-  })
+    res.send(resp);
+  });
 });
 
 // Server static files from /browser

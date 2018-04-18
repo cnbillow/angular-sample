@@ -30,6 +30,7 @@ import { User } from '../models/user.model';
         });
       } else {
         this.userService.update(this.user).subscribe((res) => {
+          console.log("|")
           this.dialogRef.close();
         });
       }
