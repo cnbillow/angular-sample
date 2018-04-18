@@ -28,7 +28,7 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const UserSchema = mongoose.Schema({
-  id: Number,
+  id: Number, 
   name: String ,
   url: String,
   active: Boolean,
