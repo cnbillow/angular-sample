@@ -31,19 +31,5 @@
         ]
       }
     }
-  ],
-  "dataGroups": [
-    {
-      "name": "api-performance",
-      "urls": [
-        "api/v2/**"
-      ],
-      "version": 2,
-      "cacheConfig": {
-        "strategy": "freshness",
-        "maxSize": 100,
-        "maxAge": "365d"
-      }
-    }
   ]
 }
