@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './models/user.model';
 
-const url = 'http://localhost:4000/api/v1/users';
+const url = '/api/v1/users';
 @Injectable()
 export class UsersService {
     constructor(private http: HttpClient) {}
