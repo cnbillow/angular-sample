@@ -3,8 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: { 
-    server: './server.ts',
-    prerender: './prerender.ts'
+    server: './server/index',
 },
   resolve: { extensions: ['.js', '.ts'] },
   target: 'node',

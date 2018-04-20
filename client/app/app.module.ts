@@ -24,7 +24,7 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     MatToolbarModule,
-    BrowserModule.withServerTransition({appId: 'lin'}),
+    BrowserModule.withServerTransition({appId: 'angular-sample'}),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     HttpClientModule,
     BrowserAnimationsModule,
