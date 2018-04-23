@@ -29,6 +29,7 @@ const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../dist/server/ma
 
 class Server {
     public app: express.Application;
+    public buildType: string = process.env.BUILD_TYPE;
     private DIST_FOLDER = join(process.cwd(), 'dist');
     constructor() {
         this.app = express();
@@ -38,8 +39,6 @@ class Server {
 
     public config() {
         // set up mongoose
-        this.configUniversal();
-
         mongoose.connect(`mongodb://${process.env.MONGO_URI || 'localhost'}`);
 
         // config
@@ -50,8 +49,10 @@ class Server {
         this.app.use(compression());
         this.app.use(cors());
 
-        // static content
-        this.app.set('views', join(this.DIST_FOLDER, 'browser'));
+    }
+
+    public configMean() {
+        this.app.use(express.static('dist/browser'));
     }
 
     public configUniversal() {
@@ -62,18 +63,9 @@ class Server {
             ]
         }));
         this.app.set('view engine', 'html');
-    }
-
-    public routes(): void {
-        let router: express.Router;
-        router = express.Router();
-
-        this.app.use('/', router);
-        this.app.use('/api/v1/users', userRoutes);
+        this.app.set('views', join(this.DIST_FOLDER, 'browser'));
 
         this.app.get('*.*', express.static(join(this.DIST_FOLDER, 'browser')));
-
-        // angular universal pass serverurl to client
         this.app.get('*', (req: Request, res: Response) => {
             res.render('./', {
                 req,
@@ -86,6 +78,31 @@ class Server {
                 ]
             });
         });
+    }
+
+    public routes(): void {
+        let router: express.Router;
+        router = express.Router();
+
+        this.app.use('/', router);
+        this.app.use('/api/v1/users', userRoutes);
+        switch (this.buildType) {
+            case 'mean':
+                this.configMean();
+                break;
+
+            case 'universal':
+                this.configUniversal();
+                break;
+
+            case 'pwa':
+                console.log('pwa');
+                break;
+
+            default:
+                console.log('default');
+                break;
+        }
     }
 }
 
