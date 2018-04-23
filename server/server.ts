@@ -40,8 +40,7 @@ class Server {
         // set up mongoose
         this.configUniversal();
 
-        const MONGO_URI = 'mongodb://127.0.0.1:27017/management';
-        mongoose.connect(MONGO_URI || process.env.MONGO_URI);
+        mongoose.connect(`mongodb://${process.env.MONGO_URI || 'localhost'}`);
 
         // config
         this.app.use(bodyParser.json());
