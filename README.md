@@ -7,14 +7,17 @@
 ## Configuration
 Create a file `.env` and set your mongodb url
 
-    MONGO_URI=[USER]:[PASS]@[HOST]:[PORT]
+    MONGO_URI = [USER]:[PASS]@[HOST]:[PORT]
    example: 
 
-    MONGO_URI=test:test@ds.mlab.com:313/heroku_32
+    MONGO_URI = test:test@ds.mlab.com:313/heroku_32
 
 Set build type: 
 * mean -> create an app using just static files
 * universal -> create app using angular universal
+```
+BUILD_TYPE = mean
+```
 
 ## Instalation
 

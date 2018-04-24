@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { TransferState, makeStateKey } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
+
 import { UsersService } from '../users.service';
 import { User } from '../models/user.model';
-import { MatDialog } from '@angular/material/dialog';
-import { TransferState, makeStateKey } from '@angular/platform-browser';
 import { AddEditUserComponent } from '../add-edit-user/add-edit-user.component';
 
 import { Subject } from 'rxjs/Subject';
@@ -26,7 +27,7 @@ export class UserListComponent implements OnInit {
 
   public searchTerm = new Subject<string>();
   constructor(
-    private userService: UsersService,
+    public userService: UsersService,
     private state: TransferState,
     public dialog: MatDialog,
   ) {
