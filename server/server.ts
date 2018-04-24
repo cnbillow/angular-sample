@@ -13,19 +13,21 @@ import * as helmet from 'helmet';
 import * as cors from 'cors';
 import { join } from 'path';
 
+import { readFileSync } from 'fs';
+
 //
 import { enableProdMode } from '@angular/core';
 // Express Engine
 import { ngExpressEngine } from '@nguniversal/express-engine';
+import { renderModuleFactory } from '@angular/platform-server';
+
 // Import module map for lazy loading
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
-// import
-
-import userRoutes from './router/user';
-
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../dist/server/main.bundle');
+
+import userRoutes from './router/user';
 
 class Server {
     public app: express.Application;
@@ -56,12 +58,26 @@ class Server {
     }
 
     public configUniversal() {
-        this.app.engine('html', ngExpressEngine({
+        /*this.app.engine('html', ngExpressEngine({
             bootstrap: AppServerModuleNgFactory,
             providers: [
               provideModuleMap(LAZY_MODULE_MAP)
             ]
-        }));
+        }));*/
+        const template = readFileSync(join(this.DIST_FOLDER, 'browser', 'index.html')).toString();
+
+        this.app.engine('html', (_, options, callback) => {
+            renderModuleFactory(AppServerModuleNgFactory, {
+              document: template,
+              url: options.req.url,
+              extraProviders: [
+                provideModuleMap(LAZY_MODULE_MAP)
+              ]
+            }).then((html) => {
+              callback(null, html);
+            });
+          });
+
         this.app.set('view engine', 'html');
         this.app.set('views', join(this.DIST_FOLDER, 'browser'));
 
@@ -94,11 +110,6 @@ class Server {
             case 'universal':
                 this.configUniversal();
                 break;
-
-            case 'pwa':
-                console.log('pwa');
-                break;
-
             default:
                 console.log('default');
                 break;
