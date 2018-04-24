@@ -15,9 +15,9 @@
     "build-server": "webpack --config webpack.server.config.js --progress --colors",
     "build-bundles": "ng build --prod && ng build --prod --app 2 --output-hashing=false",
     "bundle-report": "npm run generate-stats && webpack-bundle-analyzer dist/browser/stats.json",
-    "build-universal": "npm run build-bundles && npm run build-server",
+    "build-universal": "ng build --prod --app 1",
     "generate-stats": "ng build --prod --stats-json",
-    "start-dev": "BUILD_TYPE=universal nodemon dist/server.js",
+    "start-dev": "BUILD_TYPE=mean nodemon dist/server.js",
     "watch-client": "ng build -w",
     "watch-server": "webpack --config webpack.server.config.js --progress --colors --watch"
   },
