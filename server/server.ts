@@ -15,10 +15,7 @@ import { join } from 'path';
 
 import { readFileSync } from 'fs';
 
-//
 import { enableProdMode } from '@angular/core';
-// Express Engine
-import { ngExpressEngine } from '@nguniversal/express-engine';
 import { renderModuleFactory } from '@angular/platform-server';
 
 // Import module map for lazy loading
@@ -58,12 +55,7 @@ class Server {
     }
 
     public configUniversal() {
-        /*this.app.engine('html', ngExpressEngine({
-            bootstrap: AppServerModuleNgFactory,
-            providers: [
-              provideModuleMap(LAZY_MODULE_MAP)
-            ]
-        }));*/
+
         const template = readFileSync(join(this.DIST_FOLDER, 'browser', 'index.html')).toString();
 
         this.app.engine('html', (_, options, callback) => {
