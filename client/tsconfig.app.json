@@ -13,8 +13,7 @@
       "dom"
     ],
     "outDir": "lib",
-    "skipLibCheck": true,
-    "baseUrl": "./"
+    "skipLibCheck": true
   },
   "exclude": [
     "node_modules",

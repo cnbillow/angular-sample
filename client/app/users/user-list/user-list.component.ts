@@ -23,7 +23,7 @@ const USERS_KEY = makeStateKey('users');
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  public users: User[];
+  public users: any;
 
   public searchTerm = new Subject<string>();
   constructor(
