@@ -8,7 +8,7 @@
     "url": "https://github.com/mzavaletaglobant/angular-samplegi"
   },
   "scripts": {
-    "start": "NODE_ENV=production && node dist/server.js",
+    "start": "cross-env NODE_ENV=production && node dist/server.js",
     "test": "ng test",
     "lint": "ng lint",
     "build-prod": "ng build --prod --app 1",
@@ -22,7 +22,8 @@
     "watch-client": "ng build -w",
     "watch-server": "webpack --config webpack.server.config.js --progress --colors --watch",
     "webpack-dev": "npm run rimraf -- dist/browser && webpack --progress --colors -d",
-    "webpack-prod": "npm run rimraf -- dist/browser && NODE_ENV=production webpack --progress --profile --bail"
+    "webpack-prod": "npm run rimraf -- dist/browser && cross-env NODE_ENV=production webpack --progress --profile --bail",
+    "webpack-prod-aot": "npm run rimraf -- dist/browser && cross-env NODE_ENV=production BUILD_AOT=1 webpack --progress --profile --bail"
   },
   "private": true,
   "dependencies": {
@@ -47,11 +48,11 @@
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "~1.7.3",
+    "@angular/cli": "^1.2.6",
     "@angular/compiler": "^5.2.10",
     "@angular/compiler-cli": "^5.2.10",
     "@angular/language-service": "^5.2.10",
-    "@ngtools/webpack": "1.10.2",
+    "@ngtools/webpack": "1.8.0",
     "@types/express": "^4.11.1",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
@@ -64,6 +65,7 @@
     "cookie-parser": "~1.4.3",
     "copy-webpack-plugin": "^4.5.1",
     "cors": "^2.8.4",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
     "dotenv": "^5.0.1",
     "express": "~4.16.0",
@@ -85,11 +87,11 @@
     "pug": "2.0.0-beta11",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.2",
-    "sass-loader": "^6.0.6",
+    "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "to-string-loader": "^1.1.5",
     "ts-loader": "3.5.0",
-    "typescript": "^2.8.1",
+    "typescript": "~2.7.2",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.11.1",

@@ -6,16 +6,23 @@ var commonConfig = require('./webpack.config.common')
 var webpackMerge = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const SourceMapDevToolPlugin = require('webpack/lib/SourceMapDevToolPlugin');
+const AotPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
+var helpers = require('./helpers');
 
 
 module.exports = (options) => {
-    return webpackMerge(commonConfig, {
+
+
+    const production =  webpackMerge(commonConfig, {
         devtool: 'source-map',
+        entry: {
+            'app': options.isAot ? './client/main-aot.ts': './client/main.ts',
+        },
         output: {
             path: helpers.root('dist/browser'),
             publicPath: '/',
             filename: '[name].[chunkhash].bundle.js',
-            chunkFilename: '[name].[chunkhash].chunk.js'
+            chunkFilename: '[name].[chunkhash].chunk.js',            
         },
         module: {
             rules: [
@@ -23,16 +30,16 @@ module.exports = (options) => {
                     test: /\.tsx?$/,
                     loader: '@ngtools/webpack',
                     exclude: [
-                        /\.spec\.ts$/
+                        /\.spec\.ts$/,
+                        /\.test\.ts$/
                     ],
-                    options: {
-                        tsConfigPath: "./client/tsconfig.app.json",
-                    },
-                   
-                },
+                    options: !options.isAot ? {
+                        tsConfigPath: './client/tsconfig.aot.json',
+                    }:
+                    {},
+                },               
             ]
         },
-
         plugins: [
             new SourceMapDevToolPlugin({
                 filename: '[file].map[query]',
@@ -40,17 +47,23 @@ module.exports = (options) => {
                 fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
                 sourceRoot: 'webpack:///'
             }),
-            new webpack.NoEmitOnErrorsPlugin(),
             new UglifyJsPlugin({
                 sourceMap: false,
                 parallel: true,
             }),
-            new ExtractTextPlugin('[name].[hash].css'),
             new webpack.DefinePlugin({
                 'process.env': {
-                  'ENV': JSON.stringify('production')
+                    'ENV': JSON.stringify('production'),
+                    'NODE_ENV': JSON.stringify('production')
                 }
             }),
         ]
-    })
+    });
+    if (options.isAot) {
+        production.plugins.push(new AotPlugin({
+            tsConfigPath: './client/tsconfig.aot.json',
+            entryModule: helpers.root('client/app.module#AppModule')
+        }))
+    }
+    return production;
 };

@@ -31,7 +31,6 @@ module.exports = (options) => {
                 }
             ]
         },
-    
         plugins: [
             new webpack.ContextReplacementPlugin(
                 // The (\\|\/) piece accounts for path separators in *nix and Windows
