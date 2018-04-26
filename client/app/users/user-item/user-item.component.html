@@ -1,6 +1,6 @@
 <mat-card fxFlex="80">
   <mat-card-header>
-    <mat-card-title>{{user.name}}</mat-card-title>
+    <mat-card-title>{{user?.name}}</mat-card-title>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
@@ -17,28 +17,28 @@
   </mat-card-header>
   <mat-card-content>
 
-      <img class="md-card-image" mat-card-image src="{{user.profileUrl}}" alt="{{user.name}}">
+      <img class="md-card-image" mat-card-image src="{{user?.url}}" alt="{{user?.name}}">
 
     <div class="user-item-details">
       <p>
         <mat-icon>card_membership</mat-icon>
-        {{user.role}}
+        {{user?.role}}
       </p>
       <p>
         <mat-icon>mail_outline</mat-icon>
-        {{user.mail}}
+        {{user?.mail}}
       </p>
       <p>
         <mat-icon>call</mat-icon>
-        {{user.phoneNumber}}
+        {{user?.phoneNumber}}
       </p>
       <p>
         <mat-icon>location_on</mat-icon>
-        {{user.location}}
+        {{user?.location}}
       </p>
       <p>
         <mat-icon>date_range</mat-icon>
-        {{user.joinDate}}
+        {{user?.joinDate}}
       </p>
     </div>
 
@@ -49,7 +49,7 @@
 
 
 <mat-card fxFlex fxLayout="column" fxLayoutGap="14px">
-    <mat-slide-toggle [checked]="selectedUser?.active">
+    <mat-slide-toggle [checked]="user?.active">
         is Active? </mat-slide-toggle>
 </mat-card>
 

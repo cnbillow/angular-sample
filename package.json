@@ -12,7 +12,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "build-prod": "ng build --prod --app 1",
-    "build-server": "webpack --config webpack.server.config.js --progress --colors",
+    "build-server": "ng build --prod --app 2",    
     "build-bundles": "ng build --app 1 --prod && ng build --prod --app 2 --output-hashing=false",
     "bundle-report": "npm run generate-stats && webpack-bundle-analyzer dist/browser/stats.json",
     "build-universal": "ng build --prod --app 0",
