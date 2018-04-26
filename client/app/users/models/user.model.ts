@@ -8,6 +8,7 @@ export class User {
     public mail: string;
     public phoneNumber: string;
     public location: string;
-    public joinDate: string;
+    public joinDate: number;
     public isNewUser: boolean;
+    public description: string;
 }

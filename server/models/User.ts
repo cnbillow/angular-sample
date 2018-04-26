@@ -19,6 +19,7 @@ const UserSchema: Schema = new Schema({
     phoneNumber: String,
     location: String,
     joinDate: Date,
+    description: String,
   });
 
 export default model('User', UserSchema);

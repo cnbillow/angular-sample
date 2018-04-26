@@ -23,14 +23,12 @@
     <input matInput placeholder="Location" [(ngModel)]= "user.location">
 </mat-form-field>
 
-
-<mat-form-field>
-    <input matInput placeholder="Join Date" [(ngModel)]= "user.joinDate">
-</mat-form-field>
-
-
 <mat-form-field>
         <input matInput placeholder="Profile Url" [(ngModel)]= "user.url">
     </mat-form-field>
+
+    <mat-form-field>
+            <input matInput placeholder="Description" [(ngModel)]= "user.description">
+        </mat-form-field>
     
 <button mat-button (click)="save()">SAVE</button>

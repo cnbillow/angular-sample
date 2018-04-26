@@ -27,3 +27,9 @@
   /deep/ .mat-list-item-content {
     height: auto !important;
   }
+
+
+  .user-list-actions {
+    display: flex;
+    justify-content: space-around;
+}

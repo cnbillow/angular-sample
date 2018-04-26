@@ -21,6 +21,8 @@ class UserRouter {
     }
 
     public createUser(req: Request, res: Response): void {
+        req.body.joinDate = new Date().toString();
+        console.log("here")
         User.create(req.body, (err, user) => {
             res.send(user);
         });

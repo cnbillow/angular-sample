@@ -31,3 +31,20 @@
     height: 80px;
     margin: 0;
 }
+
+.description {
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+}
+
+
+.avatar {
+    overflow: hidden;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin: 12px;
+  }
