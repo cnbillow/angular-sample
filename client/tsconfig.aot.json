@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+      "module": "es2015",
+      "moduleResolution": "node",
+      "target": "es5",
+      "noImplicitAny": false,
+      "sourceMap": true,
+      "mapRoot": "",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "lib": [
+        "es2015",
+        "dom"
+      ],
+      "outDir": "lib",
+      "skipLibCheck": true,
+      "baseUrl": "./"
+    },
+    "exclude": [
+      "node_modules",
+      "dist",
+      "**/*.spec.ts"
+    ],
+    "angularCompilerOptions": {
+      "debug": true,
+      "entryModule":"client/app.module#AppModule",
+      "skipMetadataEmit": false,
+      "skipCodeGeneration": false
+    }
+  }
+  
