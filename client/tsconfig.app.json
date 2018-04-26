@@ -1,29 +1,13 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
     "module": "es2015",
-    "moduleResolution": "node",
-    "target": "es5",
-    "noImplicitAny": false,
-    "sourceMap": true,
-    "mapRoot": "",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": [
-      "es2015",
-      "dom"
-    ],
-    "outDir": "lib",
-    "skipLibCheck": true
+    "types": []
   },
   "exclude": [
-    "node_modules",
-    "public",
+    "test.ts",
     "**/*.spec.ts"
-  ],
-  "angularCompilerOptions": {
-    "debug": true,
-    "entryModule":"client/app.module#AppModule",
-    "skipMetadataEmit": false,
-    "skipCodeGeneration": false
-  }
+  ]
 }
