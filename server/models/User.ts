@@ -6,7 +6,7 @@ const UserSchema: Schema = new Schema({
         default: '',
         required: true,
     } ,
-    urlProfile: {
+    url: {
         type: String,
         default: '',
     },

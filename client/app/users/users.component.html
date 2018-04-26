@@ -1,1 +1,24 @@
-<app-user-list></app-user-list>
+<mat-sidenav-container fxFlex>
+        <mat-sidenav mode="side" opened>
+    
+            <mat-tab-group>
+
+                <mat-tab label="Users">
+                    <app-user-list (getUser)="getUser($event)"></app-user-list>
+                </mat-tab>
+                <mat-tab label="Settings">
+                    <span>Settings</span>
+                </mat-tab>
+            </mat-tab-group>
+    
+        </mat-sidenav>
+        <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
+    
+            <app-user-item 
+                [user] = selectedUser>
+            </app-user-item>
+           
+            
+    
+        </div>
+    </mat-sidenav-container>

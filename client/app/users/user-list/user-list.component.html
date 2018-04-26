@@ -1,3 +1,5 @@
+
+
 <div class="user-list-actions">
     <button mat-button (click)="createUser()">
         Add User
@@ -16,10 +18,28 @@
       </mat-form-field>
 </div>
 
+
+
+
+  <mat-nav-list>
+     <!--  <app-user-item 
+      *ngFor="let user of users"
+      [user] = user
+      (userRemoved)="userRemoved($event)">
+    </app-user-item> -->
+    
+    <mat-list-item *ngFor="let user of users" (click)="loadUser(user)">
+          <span>{{user.name}}</span>
+      </mat-list-item>
+  </mat-nav-list>
+
+
+
+<!-- 
 <div class="user-list-container">
   <app-user-item 
     *ngFor="let user of users"
     [user] = user
     (userRemoved)="userRemoved($event)">
   </app-user-item>
-</div>
+</div> -->

@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card fxFlex="80">
   <mat-card-header>
     <mat-card-title>{{user.name}}</mat-card-title>
     <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -16,14 +16,8 @@
     </mat-menu>
   </mat-card-header>
   <mat-card-content>
-    <div class="user-item-profile">
 
-      <img class="md-card-image" mat-card-image src="{{user.url}}" alt="{{user.name}}">
-
-      <mat-slide-toggle [checked]="user.active" [(ngModel)]="user.active">
-      </mat-slide-toggle>
-    </div>
-
+      <img class="md-card-image" mat-card-image src="{{user.profileUrl}}" alt="{{user.name}}">
 
     <div class="user-item-details">
       <p>
@@ -51,3 +45,29 @@
 
   </mat-card-content>
 </mat-card>
+
+
+
+<mat-card fxFlex fxLayout="column" fxLayoutGap="14px">
+    <mat-slide-toggle [checked]="selectedUser?.active">
+        is Active? </mat-slide-toggle>
+</mat-card>
+
+
+
+
+
+
+<!-- 
+
+<mat-card fxFlex="80">
+    <img class="md-card-image" mat-card-image src="{{selectedUser?.url}}" alt="{{selectedUser?.name}}">
+        <h2>{{selectedUser?.name}}</h2>
+      <p>{{selectedUser?.lastname}}</p>
+</mat-card>
+
+<mat-card fxFlex fxLayout="column" fxLayoutGap="14px">
+    <mat-slide-toggle [checked]="selectedUser?.active">
+        is Active? </mat-slide-toggle>
+</mat-card>
+ -->

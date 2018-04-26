@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { TransferState, makeStateKey } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -24,6 +24,7 @@ const USERS_KEY = makeStateKey('users');
 })
 export class UserListComponent implements OnInit {
   public users: any;
+  @Output() public getUser: EventEmitter<any> = new  EventEmitter<any>();
 
   public searchTerm = new Subject<string>();
   constructor(
@@ -40,14 +41,20 @@ export class UserListComponent implements OnInit {
     const found = this.state.hasKey(USERS_KEY);
     if (found) {
       this.users = this.state.get(USERS_KEY, null);
+      this.loadFirstUser();
     } else {
       this.userService.get().subscribe((res: User[]) => {
         this.users = res;
+        this.loadFirstUser();
         this.state.set(USERS_KEY, res as any);
       });
     }
   }
-
+  public loadFirstUser() {
+    if (this.users.length > 0) {
+      this.getUser.emit(this.users[0]);
+    }
+  }
   public search(terms: Observable<string>) {
     return terms.debounceTime(400)
       .distinctUntilChanged()
@@ -81,5 +88,9 @@ export class UserListComponent implements OnInit {
     if (indexList > -1) {
       this.users.splice(indexList, 1);
     }
+  }
+
+  public loadUser(user) {
+    this.getUser.emit(user);
   }
 }
