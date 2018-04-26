@@ -61,7 +61,7 @@ module.exports = (options) => {
                     'NODE_ENV': JSON.stringify('production')
                 }
             }),
-            new BundleAnalyzerPlugin()
+            /* new BundleAnalyzerPlugin() */
         ]
     });
     if (options.isAot) {
