@@ -40,6 +40,7 @@ export class UsersComponent implements OnInit {
     });
 
     this.userSubject.subscribe((users) => {
+      console.log(users)
       this.users = users;
     });
   }
@@ -81,33 +82,44 @@ export class UsersComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.users.push(result);
-        this.userSubject.next(this.users);
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.userService.save(data).subscribe((user) => {
+          this.users.push(user);
+          this.userSubject.next(this.users);
+        });
       }
     });
   }
 
   public removeUser(user: User) {
-    const indexList = this.users.findIndex((u) => {
-      return u._id === user._id;
-    });
-    if (indexList > -1) {
-      this.users.splice(indexList, 1);
-      this.userSubject.next(this.users);
-    }
+    const indexList = this.getIndexFromUsers(user);
+
+    this.userService.remove({_id: user._id}).subscribe(() => {
+      if (indexList > -1) {
+        this.users.splice(indexList, 1);
+        this.userSubject.next(this.users);
+      }
+    })
 
   }
 
-  public editedUser(user: User) {
-    const indexList = this.users.findIndex((u) => {
+  public editUser(user: User) {
+    const indexList = this.getIndexFromUsers(user);
+
+    this.userService.update(user).subscribe(() => {
+      if (indexList > -1) {
+        this.users[indexList] = user;
+        this.userSubject.next(this.users);
+      }
+    })
+   
+  }
+
+  public getIndexFromUsers(user) {
+    return this.users.findIndex((u) => {
       return u._id === user._id;
     });
-    if (indexList > -1) {
-      this.users[indexList] = user;
-      this.userSubject.next(this.users);
-    }
   }
 
   public userSelected(user: User) {

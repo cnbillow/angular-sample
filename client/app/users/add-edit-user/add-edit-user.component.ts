@@ -13,7 +13,6 @@ import { User } from '../models/user.model';
     public user: User;
 
     constructor(
-      private userService: UsersService,
       public dialogRef: MatDialogRef<AddEditUserComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any) {
         this.user = data.user;
@@ -24,16 +23,7 @@ import { User } from '../models/user.model';
     }
 
     public save() {
-      if (this.user.isNewUser) {
-        this.userService.save(this.user).subscribe((res) => {
-          this.dialogRef.close(res);
-        });
-      } else {
-        this.userService.update(this.user).subscribe((res) => {
-          this.dialogRef.close(this.user);
-        });
-      }
-
+      this.dialogRef.close(this.user);
     }
 
 }

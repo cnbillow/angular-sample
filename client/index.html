@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <link href="https://unpkg.com/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' http://xxxx 'unsafe-inline' 'unsafe-eval';" />
@@ -10,34 +11,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#673ab7">
 </head>
+
 <body>
   <style>
-
     @font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: url(./assets/fonts/roboto.woff2) format('woff2');
-  }
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      src: url(./assets/fonts/roboto.woff2) format('woff2');
+    }
 
-  .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-  }
+    .material-icons {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
 
-  
-    body { background-color: white; color: #fff;}
+
+    body {
+      background-color: white;
+      color: #fff;
+    }
 
     h1 {
       font: 2em 'Roboto', sans-serif;
@@ -48,7 +52,7 @@
       display: inline-block;
       width: 50px;
       height: 50px;
-      border: 3px solid rgba(255,255,255,.3);
+      border: 3px solid rgba(255, 255, 255, .3);
       border-radius: 50%;
       border-top-color: #fff;
       animation: spin 1s ease-in-out infinite;
@@ -56,20 +60,39 @@
     }
 
     @keyframes spin {
-      to { -webkit-transform: rotate(360deg); }
+      to {
+        -webkit-transform: rotate(360deg);
+      }
     }
+
     @-webkit-keyframes spin {
-      to { -webkit-transform: rotate(360deg); }
-    }  
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
   </style>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').then(function (registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function (err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
   <app-root>
-      <div id="loading"></div>
+    <div id="loading"></div>
   </app-root>
 
   <noscript>
-      <h3 style="color: #673ab7; font-family: Helvetica; margin: 2rem;">
-          Sorry, but app is not available without javascript
-      </h3>
+    <h3 style="color: #673ab7; font-family: Helvetica; margin: 2rem;">
+      Sorry, but app is not available without javascript
+    </h3>
   </noscript>
 </body>
+
 </html>

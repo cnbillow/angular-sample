@@ -1,15 +1,14 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var helpers = require('./helpers');
-var commonConfig = require('./webpack.config.common')
-var webpackMerge = require('webpack-merge')
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const helpers = require('./helpers');
+const commonConfig = require('./webpack.config.common')
+const webpackMerge = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const SourceMapDevToolPlugin = require('webpack/lib/SourceMapDevToolPlugin');
 const AotPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
-var helpers = require('./helpers');
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const ngcWebpack = require('ngc-webpack');
 
@@ -64,17 +63,21 @@ module.exports = (options) => {
             /* new BundleAnalyzerPlugin() */
         ]
     });
-    if (options.isAot) {
-        /* production.plugins.push(new AotPlugin({
-            tsConfigPath: './client/tsconfig.aot.json',
-            entryModule: helpers.root('client/app.module#AppModule')
-        })) */
 
+    console.log(options.isPwa == true)
+    if (options.isAot) {
         production.plugins.push(new ngcWebpack.NgcWebpackPlugin({
             AOT: true,                            // alias for skipCodeGeneration: false
             tsConfigPath: './client/tsconfig.aot.json',
             mainPath: './main-aot.ts'               // will auto-detect the root NgModule.
           }))
+    }
+
+    if (options.isPwa) {
+        production.plugins.push(new CopyWebpackPlugin([
+            { from: 'client/manifest.json', to: '' },
+            { from: 'client/sw.js', to: '' }
+        ]))
     }
     return production;
 };

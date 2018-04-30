@@ -1,7 +1,7 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var helpers = require('./helpers');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const helpers = require('./helpers');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -36,13 +36,11 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: ['app', 'vendor', 'polyfills']
         }),
-
         new HtmlWebpackPlugin({
-            template: 'client/index.html'
+            template: 'client/index.html',
         }),
         new CopyWebpackPlugin([
             { from: 'client/assets', to: 'assets' },
-            { from: 'client/manifest.json', to: '' },
           ])
     ]
 };

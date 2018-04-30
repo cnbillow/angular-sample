@@ -13,11 +13,11 @@ import { AddEditUserComponent } from '../add-edit-user/add-edit-user.component';
 export class UserListComponent {
   @Input() public users;
   @Output() public userSelected = new EventEmitter<any> ();
-  @Output() public userRemoved = new EventEmitter<any> ();
-  @Output() public userEdited = new EventEmitter<any> ();
+  @Output() public userToRemove = new EventEmitter<any> ();
+  @Output() public userToEdit = new EventEmitter<any> ();
   public displayedColumns = [ 'name', 'role', 'location', 'actions'];
 
-  constructor(public dialog: MatDialog, private userService: UsersService) {
+  constructor(public dialog: MatDialog) {
     if (this.users) {
       this.users.subscribe();
     }
@@ -37,14 +37,12 @@ export class UserListComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.userEdited.emit(result);
+        this.userToEdit.emit(result);
       }
     });
   }
 
-  public removeUser(user) {
-    this.userService.remove({_id: user._id}).subscribe(() => {
-      this.userRemoved.emit(user);
-    });
+  public deleteUser(user) {
+    this.userToRemove.emit(user);
   }
 }

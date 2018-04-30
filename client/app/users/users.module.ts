@@ -6,7 +6,6 @@ import { UsersComponent } from './users.component';
 import { UsersService } from './users.service';
 import { UsersRoutingModule } from './users-routing.module';
 import { UserListComponent } from './user-list/user-list.component';
-import { UserItemComponent } from './user-item/user-item.component';
 
 import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
 import { SharedModule } from '../shared/shared.module';
@@ -22,7 +21,6 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     UsersComponent,
     UserListComponent,
-    UserItemComponent,
     AddEditUserComponent,
   ],
   providers: [
