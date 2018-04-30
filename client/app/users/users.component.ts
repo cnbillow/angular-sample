@@ -40,30 +40,33 @@ export class UsersComponent implements OnInit {
     });
 
     this.userSubject.subscribe((users) => {
-      console.log(users)
       this.users = users;
     });
   }
 
   public ngOnInit() {
-    const found = this.state.hasKey(USERS_KEY);
+    this.userService.get().subscribe((res: User[]) => {
+      console.log(res)
+
+      this.userSubject.next(res);
+      this.state.set(USERS_KEY, res as any);
+    });
+   /*  const found = this.state.hasKey(USERS_KEY);
+    console.log(found)
     if (found) {
-      this.userSubject.next(this.state.get(USERS_KEY, null));
-      this.loadFirstUser();
+      const users = this.state.get(USERS_KEY, null);
+      console.log(users)
+     // this.userSubject.next(users);
     } else {
       this.userService.get().subscribe((res: User[]) => {
+        console.log(res)
+
         this.userSubject.next(res);
-        this.loadFirstUser();
         this.state.set(USERS_KEY, res as any);
       });
-    }
+    } */
   }
 
-  public loadFirstUser() {
-    if (this.users.length > 0) {
-      this.selectedUser = this.users[0];
-    }
-  }
   public search(terms: Observable<string>) {
     return terms.debounceTime(400)
       .distinctUntilChanged()

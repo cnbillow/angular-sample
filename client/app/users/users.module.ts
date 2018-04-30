@@ -8,15 +8,37 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UserListComponent } from './user-list/user-list.component';
 
 import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
-import { SharedModule } from '../shared/shared.module';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule} from '@angular/material/sidenav';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+    MatInputModule,
+    MatSlideToggleModule,
+    MatListModule,
+    MatSidenavModule,
+    MatTableModule,
+    MatTabsModule,
+    MatMenuModule,
+    MatToolbarModule,
     UsersRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    SharedModule,
   ],
   declarations: [
     UsersComponent,
@@ -29,7 +51,5 @@ import { SharedModule } from '../shared/shared.module';
   entryComponents: [AddEditUserComponent]
 })
 export class UsersModule {
-  constructor() {
-    console.log('UserModule');
-  }
+  constructor() {}
 }

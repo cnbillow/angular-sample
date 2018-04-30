@@ -5,12 +5,13 @@ const commonConfig = require('./webpack.config.common')
 const webpackMerge = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const SourceMapDevToolPlugin = require('webpack/lib/SourceMapDevToolPlugin');
-const AotPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
-
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
 const ngcWebpack = require('ngc-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin');
+const PurifyPlugin = require('@angular-devkit/build-optimizer').PurifyPlugin;
+const HashedModuleIdsPlugin = require('webpack/lib/HashedModuleIdsPlugin')
+
 
 module.exports = (options) => {
 
@@ -50,21 +51,42 @@ module.exports = (options) => {
                 fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
                 sourceRoot: 'webpack:///'
             }),
+            new ExtractTextPlugin('[name].[contenthash].css'),
+            new PurifyPlugin(), /* buildOptimizer */
+            new HashedModuleIdsPlugin(),
+            new ModuleConcatenationPlugin(),
+            new HtmlWebpackPlugin({
+                template: 'client/index.html',
+                excludeChunks: ['base'],
+                filename: 'index.html',
+                minify: {
+                    caseSensitive: true,
+                    collapseWhitespace: true,
+                    keepClosingSlash: true
+                }
+            }),
+         
             new UglifyJsPlugin({
-                sourceMap: false,
-                parallel: true,
+                    sourceMap: false,
+                    parallel: true,
+                    uglifyOptions: 
+                        { ecma: 5,
+                        warnings: false,
+                        ie8: false,
+                        mangle: true,
+                        compress: { pure_getters: true, passes: 2 },
+                        output: { ascii_only: true, comments: false } 
+                }
             }),
             new webpack.DefinePlugin({
                 'process.env': {
                     'ENV': JSON.stringify('production'),
-                    'NODE_ENV': JSON.stringify('production')
+                    'process.env.NODE_ENV': JSON.stringify('production')
                 }
             }),
-            /* new BundleAnalyzerPlugin() */
         ]
     });
 
-    console.log(options.isPwa == true)
     if (options.isAot) {
         production.plugins.push(new ngcWebpack.NgcWebpackPlugin({
             AOT: true,                            // alias for skipCodeGeneration: false

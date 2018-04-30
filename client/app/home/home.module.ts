@@ -2,14 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
-import { SharedModule } from '../shared/shared.module';
+import { MatTabsModule } from '@angular/material/tabs';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [ HomeComponent ],
     imports: [
         CommonModule,
+        RouterModule,
         HomeRoutingModule,
-        SharedModule ],
+        MatTabsModule,
+    ],
     exports: [],
     providers: [],
 })

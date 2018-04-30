@@ -1,10 +1,10 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const helpers = require('./helpers');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = {
+const commonConfig = {
     entry: {
         'polyfills': './client/polyfills.ts',
         'vendor': './client/vendor.ts',
@@ -36,11 +36,14 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: ['app', 'vendor', 'polyfills']
         }),
-        new HtmlWebpackPlugin({
-            template: 'client/index.html',
-        }),
         new CopyWebpackPlugin([
             { from: 'client/assets', to: 'assets' },
-          ])
+          ]),
     ]
 };
+
+if(process.env.WEBPACK_ANALIZER) {
+    commonConfig.plugins.push(new BundleAnalyzerPlugin());
+}
+
+module.exports = commonConfig;

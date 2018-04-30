@@ -1,8 +1,9 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const helpers = require('./helpers');
 const commonConfig = require('./webpack.config.common')
 const webpackMerge = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = (options) => {
     return webpackMerge(commonConfig, {
         output: {
@@ -31,12 +32,15 @@ module.exports = (options) => {
             ]
         },
         plugins: [
+            new HtmlWebpackPlugin({
+                template: 'client/index.html',
+            }),
             new webpack.ContextReplacementPlugin(
                 // The (\\|\/) piece accounts for path separators in *nix and Windows
                 /angular(\\|\/)core(\\|\/)@angular/,
                 helpers.root('./src'), // location of your src
                 {} // a map of your routes
-            )
+            ),
         ]
     })
 };

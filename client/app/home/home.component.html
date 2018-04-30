@@ -1,5 +1,13 @@
 <mat-tab-group>
-    <mat-tab label="User Management"></mat-tab>
-    <mat-tab label="Roles"></mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <a (click)="redirectToUsers()">Users </a>
+        </ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <a (click)="redirectToRoles()">Roles </a>
+        </ng-template>
+    </mat-tab>
 </mat-tab-group>
 <router-outlet></router-outlet>

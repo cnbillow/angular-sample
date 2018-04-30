@@ -11,21 +11,16 @@
     "start": "cross-env NODE_ENV=production && node dist/server.js",
     "test": "ng test",
     "lint": "ng lint",
-    "build-pwa": "ng build --prod --app 0",
-    "build-server": "ng build --prod --app 2 --output-hashing=false && webpack --config webpack.server.config.js --progress --colors",    
-    "build-bundles": "ng build --app 1 --prod && ng build --prod --app 2 --output-hashing=false",
-    "bundle-report": "npm run generate-stats && webpack-bundle-analyzer dist/browser/stats.json",
-    "build-universal": "ng build --prod --app 0",
-    "generate-stats": "ng build --prod --stats-json",
     "rimraf": "rimraf",
     "serve-mean": "cross-env BUILD_TYPE=mean node dist/server.js",
     "serve-universal": "cross-env BUILD_TYPE=universal node dist/server.js",
-    "watch-client": "ng build -w",
+    "watch-client": "npm run build-dev --watch",
     "watch-server": "webpack --config webpack.server.config.js --progress --colors --watch",
-    "webpack-dev": "npm run rimraf -- dist/browser && webpack --progress --colors -d --watch",
-    "webpack-prod": "npm run rimraf -- dist/browser && cross-env NODE_ENV=production webpack --progress --profile --bail",
-    "webpack-prod-aot": "npm run rimraf -- dist/browser && cross-env NODE_ENV=production BUILD_AOT=1 webpack --progress --profile --bail ",
-    "webpack-prod-pwa": "npm run rimraf -- dist/browser && cross-env NODE_ENV=production BUILD_AOT=1 BUILD_PWA=1 webpack --progress --profile --bail "
+    "build-dev": "npm run rimraf -- dist/browser && webpack --progress --colors -d --watch",
+    "build-server": "ng build --prod --app 2 --output-hashing=false",
+    "build-prod": "npm run rimraf -- dist/browser && cross-env NODE_ENV=production BUILD_AOT=1 webpack --progress --profile --bail ",
+    "build-pwa": "npm run rimraf -- dist/browser && cross-env NODE_ENV=production BUILD_AOT=1 BUILD_PWA=1 webpack --progress --profile --bail ",
+    "test1": "npm run rimraf -- dist/server && webpack --config webpack.config.server.js --progress --profile --bail "
   },
   "private": true,
   "dependencies": {
@@ -98,6 +93,7 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.11.1",
+    "webpack-common-shake": "^1.5.3",
     "webpack-merge": "^4.1.2"
   }
 }

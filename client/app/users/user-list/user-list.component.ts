@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../models/user.model';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { UsersService } from '../users.service';
 import { AddEditUserComponent } from '../add-edit-user/add-edit-user.component';
 
