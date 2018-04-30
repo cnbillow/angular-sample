@@ -1,17 +1,50 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../models/user.model';
-
+import { MatDialog } from '@angular/material';
+import { UsersService } from '../users.service';
+import { AddEditUserComponent } from '../add-edit-user/add-edit-user.component';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
+
 export class UserListComponent {
-  @Input() users: User[];
-  @Output() userSelected = new EventEmitter<any> ();
+  @Input() public users;
+  @Output() public userSelected = new EventEmitter<any> ();
+  @Output() public userRemoved = new EventEmitter<any> ();
+  @Output() public userEdited = new EventEmitter<any> ();
+  public displayedColumns = [ 'name', 'role', 'location', 'actions'];
+
+  constructor(public dialog: MatDialog, private userService: UsersService) {
+    if (this.users) {
+      this.users.subscribe();
+    }
+  }
 
   public loadUser(user) {
     this.userSelected.emit(user);
+  }
+
+  public editUser(user: User) {
+    const dialogRef = this.dialog.open(AddEditUserComponent, {
+      width: '450px',
+      data: {
+        user: { ...user }
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.userEdited.emit(result);
+      }
+    });
+  }
+
+  public removeUser(user) {
+    this.userService.remove({_id: user._id}).subscribe(() => {
+      this.userRemoved.emit(user);
+    });
   }
 }

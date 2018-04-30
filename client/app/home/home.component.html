@@ -1,11 +1,5 @@
-<img src="../../assets/images/mean.png" alt="img">
-<br>
-<button 
-    mat-button
-    [routerLink]="['/users']">
-    Go to Users
-</button>
-
-<a [routerLink]="['/users']" routerLinkActive="active">Welcome User</a>
-
-
+<mat-tab-group>
+    <mat-tab label="User Management"></mat-tab>
+    <mat-tab label="Roles"></mat-tab>
+</mat-tab-group>
+<router-outlet></router-outlet>

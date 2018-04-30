@@ -1,5 +1,62 @@
-  <mat-nav-list>  
-    <mat-list-item *ngFor="let user of users" (click)="loadUser(user)">
-          <span>{{user.name}}</span>
-      </mat-list-item>
-  </mat-nav-list>
+<!-- <app-user-item  *ngFor="let user of users" [user]=selectedUser  (click)="loadUser(user)"
+(userRemoved)="removeUser($event)">
+</app-user-item> -->
+<div>
+    <mat-table #table [dataSource]="users">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name  
+          </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div class="user-info">
+              <mat-icon matListAvatar svgIcon="avatars:{{element?.url}}" class="avatar"></mat-icon>
+              <div class="basic-info">
+                  <h4 class="name">{{element.name}} </h4>
+                  <h5 class="mail">{{element.mail}} </h5>
+              </div>  
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+          <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.role}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+            <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{element.location}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+              <mat-header-cell *matHeaderCellDef [style.flex]="'0 0 75px'"> Actions </mat-header-cell>
+              <mat-cell *matCellDef="let user" [style.flex]="'0 0 75px'">
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="editUser(user)">
+                          <mat-icon>mode_edit</mat-icon>
+                          <span>Edit</span>
+                        </button>
+                        <button mat-menu-item (click)="removeUser(user)">
+                          <mat-icon>delete</mat-icon>
+                          <span>Delete</span>
+                        </button>
+                      </mat-menu>
+              </mat-cell>
+            </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>

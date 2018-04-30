@@ -1,38 +1,30 @@
-<mat-sidenav-container fxFlex>
-    <mat-sidenav #sidenav mode="side" opened>
-
-        <mat-tab-group>
-
-            <mat-tab label="Users">
-                <div class="user-list-actions">
-                    <button mat-button (click)="createUser()">
-                        Add User
-                        <mat-icon>add_circle</mat-icon>
-                    </button>
-
-                    <mat-form-field>
-                        <input type="string" matInput placeholder="Search" (keyup)="searchTerm.next($event.target.value)">
-                        <button mat-button matSuffix mat-icon-button aria-label="Clear">
-                            <mat-icon>search</mat-icon>
-                        </button>
-                    </mat-form-field>
-                </div>
-
-                <app-user-list [users]="users" (userSelected)="userSelected($event)"></app-user-list>
-            </mat-tab>
-            <mat-tab label="Settings">
-                <span>Settings</span>
-            </mat-tab>
-        </mat-tab-group>
-
-    </mat-sidenav>
-    <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
-
-        <app-user-item [user]=selectedUser
-        (userRemoved)="removeUser($event)">
-        </app-user-item>
-
-
-
+<div>
+    <div>
+        <button mat-button (click)="createUser()">
+            <mat-icon>add_circle</mat-icon>
+            Add new users
+        </button>
+        <mat-list>
+            <mat-list-item> Pepper </mat-list-item>
+            <mat-list-item> Salt </mat-list-item>
+            <mat-list-item> Paprika </mat-list-item>
+        </mat-list>
     </div>
-</mat-sidenav-container>
+    <div>
+        <app-user-list [users]="userSubject" 
+        (userSelected)="userSelected($event)" 
+        (userEdited)="editedUser($event)" 
+        (userRemoved)="removeUser($event)"></app-user-list>
+    </div>
+</div>
+
+
+<!-- <app-user-item [user]=selectedUser
+(userRemoved)="removeUser($event)">
+</app-user-item> -->
+
+
+<!-- <input type="string" matInput placeholder="Search" (keyup)="searchTerm.next($event.target.value)">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>search</mat-icon>
+            </button> -->

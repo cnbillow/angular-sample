@@ -7,8 +7,8 @@ import { User } from './models/user.model';
 
 import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
 
-import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -23,10 +23,11 @@ const USERS_KEY = makeStateKey('users');
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
-export class UsersComponent {
+
+export class UsersComponent implements OnInit {
   public users: any;
   public selectedUser: User;
-
+  public userSubject = new Subject<any>();
 
   public searchTerm = new Subject<string>();
   constructor(
@@ -35,18 +36,22 @@ export class UsersComponent {
     public dialog: MatDialog,
   ) {
     this.search(this.searchTerm).subscribe((resp: User[]) => {
-      this.users = resp;
+      this.userSubject.next(resp);
+    });
+
+    this.userSubject.subscribe((users) => {
+      this.users = users;
     });
   }
 
   public ngOnInit() {
     const found = this.state.hasKey(USERS_KEY);
     if (found) {
-      this.users = this.state.get(USERS_KEY, null);
+      this.userSubject.next(this.state.get(USERS_KEY, null));
       this.loadFirstUser();
     } else {
       this.userService.get().subscribe((res: User[]) => {
-        this.users = res;
+        this.userSubject.next(res);
         this.loadFirstUser();
         this.state.set(USERS_KEY, res as any);
       });
@@ -79,6 +84,7 @@ export class UsersComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.users.push(result);
+        this.userSubject.next(this.users);
       }
     });
   }
@@ -87,9 +93,20 @@ export class UsersComponent {
     const indexList = this.users.findIndex((u) => {
       return u._id === user._id;
     });
-
     if (indexList > -1) {
       this.users.splice(indexList, 1);
+      this.userSubject.next(this.users);
+    }
+
+  }
+
+  public editedUser(user: User) {
+    const indexList = this.users.findIndex((u) => {
+      return u._id === user._id;
+    });
+    if (indexList > -1) {
+      this.users[indexList] = user;
+      this.userSubject.next(this.users);
     }
   }
 

@@ -42,6 +42,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             { from: 'client/assets', to: 'assets' },
+            { from: 'client/manifest.json', to: '' },
           ])
     ]
 };
