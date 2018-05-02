@@ -35,6 +35,7 @@ class UserRouter {
 
     public deleteUser(req: Request, res: Response): void {
         User.findByIdAndRemove(req.params._id, (err, resp) => {
+            console.log(resp)
             res.send(resp);
         });
     }

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from './models/user.model';
-
+import { User } from '../models/user.model';
+import { Observable } from 'rxjs/Observable';
 const url = 'http://localhost:4000/api/v1/users';
 @Injectable()
 export class UsersService {
     constructor(private http: HttpClient) {}
 
-    public get(params = {}) {
+    public get(params = {}): Observable<any> {
         return this.http.get(url, params);
     }
 
@@ -19,7 +19,7 @@ export class UsersService {
         return this.http.post(url, data);
     }
 
-    public remove(data: any) {
-        return this.http.delete(`${url}/${data._id}`);
+    public delete(_id: string) {
+        return this.http.delete(`${url}/${_id}`);
     }
 }

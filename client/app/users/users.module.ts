@@ -46,7 +46,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AddEditUserComponent,
   ],
   providers: [
-    UsersService
+    UsersService,
   ],
   entryComponents: [AddEditUserComponent]
 })

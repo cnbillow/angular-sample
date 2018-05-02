@@ -4,15 +4,20 @@
             <mat-icon>add_circle</mat-icon>
             Add new users
         </button>
+        <input 
+          type="string" 
+          matInput 
+          placeholder="Search" 
+          (keyup)="searchTerm.next($event.target.value)">
        <!--  <mat-list>
             <mat-list-item> Pepper </mat-list-item>
             <mat-list-item> Salt </mat-list-item>
             <mat-list-item> Paprika </mat-list-item>
         </mat-list> -->
     </div>
+
     <div>
-        <app-user-list [users]="userSubject" 
-        (userSelected)="userSelected($event)" 
+        <app-user-list [users]="users$" 
         (userToEdit)="editUser($event)" 
         (userToRemove)="removeUser($event)"></app-user-list>
     </div>

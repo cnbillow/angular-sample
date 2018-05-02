@@ -18,6 +18,13 @@ import { HttpModule } from '@angular/http';
 
 import { environment } from '../environments/environment';
 
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './state/reducers/user.reducer';
+import { EffectsModule } from '@ngrx/effects'
+import { UserEffects } from './state/effects/user.effects';
+import { UsersService } from './users/users.service';
+
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +37,12 @@ import { environment } from '../environments/environment';
     HttpModule,
     BrowserAnimationsModule,
     BrowserTransferStateModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({users: userReducer}),
+    EffectsModule.forRoot([UserEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
