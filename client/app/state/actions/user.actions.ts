@@ -1,4 +1,5 @@
 import { User } from '../../models/user.model';
+ /* tslint:disable */
 
 export const SET_USERS = 'SET_USERS';
 export const SET_USERS_SUCCESS = 'SET_USERS_SUCCESS';
@@ -10,7 +11,6 @@ export const UPDATE_USER = 'UPDATE_USERS';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USERS_SUCCESS';
 export const DELETE_USER = 'DELETE_USERS';
 export const DELETE_USER_SUCCESS = 'DELETE_USERS_SUCCESS';
- /* tslint:disable */
 
 export class SetUserAction {
     readonly type = SET_USERS;
@@ -68,3 +68,4 @@ LoadUsersAction | LoadUsersSuccessAction |
 SaveUserAction | SaveUserSuccessAction |
 UpdateUserAction | UpdateUserSuccessAction |
 DeleteUsersAction | DeleteUsersSuccessAction;
+
