@@ -4,10 +4,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -20,11 +18,11 @@ import { environment } from '../environments/environment';
 
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './state/reducers/user.reducer';
-import { EffectsModule } from '@ngrx/effects'
+import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './state/effects/user.effects';
 import { UsersService } from './users/users.service';
 
-import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
   declarations: [
     AppComponent,

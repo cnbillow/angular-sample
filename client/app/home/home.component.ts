@@ -12,12 +12,12 @@ export class HomeComponent {
     }
 
     public redirectToUsers() {
-        this.router.navigate(['users'])
+        this.router.navigate(['users']);
 
     }
 
     public redirectToRoles() {
-        this.router.navigate(['roles'])
+        this.router.navigate(['roles']);
 
     }
 }

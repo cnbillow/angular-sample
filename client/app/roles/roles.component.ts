@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
     templateUrl: 'roles.component.html',
 })
 export class RolesComponent {
-    constructor() {}
+    constructor() { /**/ }
 
 }

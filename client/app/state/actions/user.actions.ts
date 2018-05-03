@@ -1,5 +1,7 @@
-import { User } from "../../models/user.model";
+import { User } from '../../models/user.model';
 
+export const SET_USERS = 'SET_USERS';
+export const SET_USERS_SUCCESS = 'SET_USERS_SUCCESS';
 export const LOAD_USERS = 'LOAD_USERS';
 export const LOAD_USERS_SUCCESS = 'LOAD_USERS_SUCCESS';
 export const SAVE_USER = 'SAVE_USERS';
@@ -8,6 +10,17 @@ export const UPDATE_USER = 'UPDATE_USERS';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USERS_SUCCESS';
 export const DELETE_USER = 'DELETE_USERS';
 export const DELETE_USER_SUCCESS = 'DELETE_USERS_SUCCESS';
+ /* tslint:disable */
+
+export class SetUserAction {
+    readonly type = SET_USERS;
+    constructor() {}
+}
+
+export class SetUsersSuccessAction {
+    readonly type = SET_USERS_SUCCESS;
+    constructor(public payload: any) {}
+}
 
 export class LoadUsersAction {
     readonly type = LOAD_USERS;
@@ -50,6 +63,7 @@ export class DeleteUsersSuccessAction {
 }
 
 export type Action = 
+SetUserAction | SetUsersSuccessAction |
 LoadUsersAction | LoadUsersSuccessAction |
 SaveUserAction | SaveUserSuccessAction |
 UpdateUserAction | UpdateUserSuccessAction |

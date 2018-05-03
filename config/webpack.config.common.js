@@ -7,7 +7,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const commonConfig = {
     entry: {
         'polyfills': './client/polyfills.ts',
-        'vendor': './client/vendor.ts',
         'app': './client/main.ts'
     },
 
@@ -34,7 +33,7 @@ const commonConfig = {
 
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['app', 'vendor', 'polyfills']
+            name: ['app', 'polyfills']
         }),
         new CopyWebpackPlugin([
             { from: 'client/assets', to: 'assets' },

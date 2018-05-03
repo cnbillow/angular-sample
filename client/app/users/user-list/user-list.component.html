@@ -12,7 +12,11 @@
           </mat-header-cell>
         <mat-cell *matCellDef="let user">
           <div class="user-info">
-              <mat-icon matListAvatar svgIcon="avatars:{{user?.url}}" class="avatar"></mat-icon>
+              <!-- <mat-icon 
+                matListAvatar 
+                svgIcon="avatars:{{user?.url}}" 
+                class="avatar">
+              </mat-icon> -->
               <div class="basic-info">
                   <h4 class="name">{{user.name}} </h4>
                   <h5 class="mail">{{user.mail}} </h5>

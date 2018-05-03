@@ -17,7 +17,7 @@ import { User } from '../../models/user.model';
       @Inject(MAT_DIALOG_DATA) public data: any) {
         this.user = data.user;
         if (this.user.isNewUser) {
-          this.user.url = 'svg-1'
+          this.user.url = 'svg-1';
         }
        }
 

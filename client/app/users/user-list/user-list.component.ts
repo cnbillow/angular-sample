@@ -15,7 +15,7 @@ export class UserListComponent {
   @Output() public userToRemove = new EventEmitter<any> ();
   @Output() public userToEdit = new EventEmitter<any> ();
 
-  public displayedColumns = [ 
+  public displayedColumns = [
     'name',
     'role',
     'location',

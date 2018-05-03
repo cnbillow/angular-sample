@@ -34,10 +34,10 @@ export class UsersComponent implements OnInit {
   public searchTerm = new Subject<string>();
   constructor(
     private store: Store<AppState>,
-    private state: TransferState,
+    private transferState: TransferState,
     public dialog: MatDialog,
   ) {
-    this.users$ = this.store.select(state => state.users);
+    this.users$ = this.store.select((state) => state.users);
   }
 
   public ngOnInit() {
@@ -73,7 +73,13 @@ export class UsersComponent implements OnInit {
   }
 
   public loadUsers() {
-    this.store.dispatch(new userActions.LoadUsersAction())
+
+    const found = this.transferState.hasKey(USERS_KEY);
+    if (found) {
+      this.store.dispatch(new userActions.SetUserAction());
+    } else {
+      this.store.dispatch(new userActions.LoadUsersAction());
+    }
   }
 
   public saveUser(user: User) {
@@ -81,7 +87,7 @@ export class UsersComponent implements OnInit {
   }
 
   public editUser(user: User) {
-    this.store.dispatch(new userActions.UpdateUserAction(user)); 
+    this.store.dispatch(new userActions.UpdateUserAction(user));
   }
 
   public removeUser(_id: string) {
