@@ -1,5 +1,5 @@
 import * as userActions from '../actions/user.actions';
-import { reducer, UserState } from './user.reducer';
+import { reducer, UserState } from './user.reducers';
 import { User } from '../../models/user.model';
 
 describe('userReducer', () => {

@@ -14,19 +14,20 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { StoreModule } from '@ngrx/store';
 
-import { UserManagementService } from './user-management.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
 import { UserManagementRoutingModule } from './user-management-routing.module';
 
 import * as fromUserComponents from './components';
+import { UserAddEditComponent } from './components';
 
 import * as fromUserContainers from './containers';
 
-import { reducers } from './store/reducers';
-import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './store/effects/user.effects';
-import { UsersService } from './services/users.service';
+import * as fromServices from './services';
+
+import { reducers, effects } from './store';
 
 @NgModule({
   imports: [
@@ -46,16 +47,17 @@ import { UsersService } from './services/users.service';
     FormsModule,
     CommonModule,
     StoreModule.forFeature('user-management', reducers),
-    EffectsModule.forFeature([UserEffects])
+    EffectsModule.forFeature(effects)
   ],
   declarations: [
     ...fromUserComponents.components,
-    ...fromUserContainers.containers,
+    ...fromUserContainers.containers
   ],
-  providers: [
-    UsersService,
-  ]
+  providers: [...fromServices.services],
+  entryComponents: [UserAddEditComponent]
 })
 export class UserManagementModule {
-  constructor() { /**/ }
+  constructor() {
+    /**/
+  }
 }

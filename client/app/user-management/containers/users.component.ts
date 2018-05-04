@@ -3,10 +3,6 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { TransferState, makeStateKey } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 
-import { User } from '../models/user.model';
-
-import { UserAddEditComponent } from '../components';
-
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
@@ -14,19 +10,21 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
+
 import { Store } from '@ngrx/store';
 
-import * as userActions from '../store/actions/user.actions';
+import { User } from '../models/user.model';
+import { UserAddEditComponent } from '../components';
+
+import * as userActions from '../store/actions';
 import * as fromStore from '../store';
 
 const USERS_KEY = makeStateKey('users');
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  styleUrls: ['./users.component.scss']
 })
-
 export class UsersComponent implements OnInit {
   public users$: Observable<any>;
 
@@ -34,7 +32,7 @@ export class UsersComponent implements OnInit {
   constructor(
     private store: Store<fromStore.UserManagementState>,
     private transferState: TransferState,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {
     this.users$ = this.store.select<any>(fromStore.getAllUsers);
   }
@@ -45,12 +43,13 @@ export class UsersComponent implements OnInit {
   }
 
   public search(terms) {
-    return terms.debounceTime(400)
+    return terms
+      .debounceTime(400)
       .distinctUntilChanged()
       .do((term) => {
-          this.store.dispatch(
-            new userActions.LoadUsers({params : {search: term || ''}}
-          ));
+        this.store.dispatch(
+          new userActions.LoadUsers({ params: { search: term || '' } })
+        );
       });
   }
 
@@ -59,7 +58,7 @@ export class UsersComponent implements OnInit {
       width: '450px',
       data: {
         user: {
-          isNewUser: true,
+          isNewUser: true
         }
       }
     });
@@ -72,7 +71,6 @@ export class UsersComponent implements OnInit {
   }
 
   public loadUsers() {
-
     const found = this.transferState.hasKey(USERS_KEY);
     if (found) {
       this.store.dispatch(new userActions.SetUsers());
@@ -92,5 +90,4 @@ export class UsersComponent implements OnInit {
   public removeUser(_id: string) {
     this.store.dispatch(new userActions.DeleteUser(_id));
   }
-
 }

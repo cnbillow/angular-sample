@@ -27,6 +27,11 @@ export class SetUsersSuccess {
     constructor(public payload: any) {}
 }
 
+export class SetUsersFail {
+    readonly type = SET_USERS_FAIL;
+    constructor(public payload: any) {}
+}
+
 export class LoadUsers {
     readonly type = LOAD_USERS;
     constructor(public payload: any = {}) {}
