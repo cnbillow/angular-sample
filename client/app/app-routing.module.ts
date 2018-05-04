@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
-import { UsersModule } from './users/users.module';
 
 export function loadModule(module) {
   return module;
@@ -11,15 +10,8 @@ export function loadModule(module) {
 const routes: Routes = [
   {
     path: '',
-    // temporary until The bug is fixed on Angular
     loadChildren: './home/home.module#HomeModule',
-    // loadChildren: loadModule(HomeModule),
   },
-  /* {
-    path: '',
-    loadChildren: './users/users.module#UsersModule',
-    // loadChildren: loadModule(UsersModule),
-  }, */
   {
     path: '**',
     redirectTo: ''

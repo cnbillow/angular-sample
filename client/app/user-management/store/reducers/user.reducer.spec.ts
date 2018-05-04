@@ -1,5 +1,5 @@
 import * as userActions from '../actions/user.actions';
-import { userReducer } from './user.reducer';
+import { reducer, UserState } from './user.reducer';
 import { User } from '../../models/user.model';
 
 describe('userReducer', () => {
@@ -8,16 +8,20 @@ describe('userReducer', () => {
             const user = new User();
             user._id = '1';
             user.name = 'foo';
-            const currentState = [];
+            const currentState: UserState = {
+                data: [],
+                loaded: false,
+                loading: false,
+            };
 
             const expectedResult = [
                 user,
             ];
 
-            const action = new userActions.LoadUsersSuccessAction([
+            const action = new userActions.LoadUsersSuccess([
                 user,
             ]);
-            const result = userReducer(currentState, action);
+            const result = reducer(currentState, action);
 
             expect(result).toEqual(expectedResult);
 
@@ -30,14 +34,18 @@ describe('userReducer', () => {
             newUser._id = '1';
             newUser.name = 'foo';
 
-            const currentState = [];
+            const currentState: UserState = {
+                data: [],
+                loaded: false,
+                loading: false,
+            };
 
             const expectedResult = [
                 newUser,
             ];
 
-            const action = new userActions.SaveUserSuccessAction(newUser);
-            const result = userReducer(currentState, action);
+            const action = new userActions.SaveUserSuccess(newUser);
+            const result = reducer(currentState, action);
             expect(result).toEqual(expectedResult);
         });
     });
@@ -52,34 +60,38 @@ describe('userReducer', () => {
             userEdited._id = '1';
             userEdited.name = 'bar';
 
-            const currentState = [
-                user,
-            ];
+            const currentState: UserState = {
+                data: [user],
+                loaded: false,
+                loading: false,
+            };
 
             const expectedResult = [
                 userEdited,
             ];
 
-            const action = new userActions.UpdateUserSuccessAction(userEdited);
-            const result = userReducer(currentState, action);
+            const action = new userActions.UpdateUserSuccess(userEdited);
+            const result = reducer(currentState, action);
             expect(result).toEqual(expectedResult);
         });
     });
 
-    describe('updateUserAction', () => {
-        it('user should be edited', () => {
+    describe('deleteUserAction', () => {
+        it('user should be deleted', () => {
             const user = new User();
             user._id = '1';
             user.name = 'foo';
 
-            const currentState = [
-                user,
-            ];
+            const currentState: UserState = {
+                data: [user],
+                loaded: false,
+                loading: false,
+            };
 
             const expectedResult = [];
 
-            const action = new userActions.DeleteUsersSuccessAction(user._id);
-            const result = userReducer(currentState, action);
+            const action = new userActions.DeleteUserSuccess(user._id);
+            const result = reducer(currentState, action);
             expect(result).toEqual(expectedResult);
         });
     });

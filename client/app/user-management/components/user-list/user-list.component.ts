@@ -1,8 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../models/user.model';
 import { MatDialog } from '@angular/material/dialog';
-import { UsersService } from '../users.service';
-import { AddEditUserComponent } from '../add-edit-user/add-edit-user.component';
+import { UserAddEditComponent } from '../';
 
 @Component({
   selector: 'app-user-list',
@@ -25,7 +24,7 @@ export class UserListComponent {
   constructor(public dialog: MatDialog) {}
 
   public editUser(user: User) {
-    const dialogRef = this.dialog.open(AddEditUserComponent, {
+    const dialogRef = this.dialog.open(UserAddEditComponent, {
       width: '450px',
       data: {
         user: { ...user }

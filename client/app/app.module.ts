@@ -14,15 +14,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 // You can get runtime information about the current platform and the appId by injection.
 
+import { storeFreeze } from 'ngrx-store-freeze';
+
 import { environment } from '../environments/environment';
 
-import { StoreModule } from '@ngrx/store';
-import { userReducer } from './state/reducers/user.reducer';
+import { StoreModule, MetaReducer } from '@ngrx/store';
+/* import { userReducer } from './state/reducers/user.reducer';
+ */
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './state/effects/user.effects';
-import { UsersService } from './users/users.service';
+/* import { UserEffects } from './state/effects/user.effects';
+ */
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+/* tslint:disable-next-line */
+export const metaReducers: MetaReducer<any>[] = !environment.production
+  ? [storeFreeze]
+  : [];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,11 +45,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserAnimationsModule,
     BrowserTransferStateModule,
     AppRoutingModule,
-    StoreModule.forRoot({users: userReducer}),
-    EffectsModule.forRoot([UserEffects]),
+    StoreModule.forRoot({}, { metaReducers }),
+    EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
-  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -2,13 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { UsersComponent } from './users.component';
-import { UsersService } from './users.service';
-import { UsersRoutingModule } from './users-routing.module';
-import { UserListComponent } from './user-list/user-list.component';
-
-import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -21,6 +14,19 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { StoreModule } from '@ngrx/store';
+
+import { UserManagementService } from './user-management.service';
+import { UserManagementRoutingModule } from './user-management-routing.module';
+
+import * as fromUserComponents from './components';
+
+import * as fromUserContainers from './containers';
+
+import { reducers } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './store/effects/user.effects';
+import { UsersService } from './services/users.service';
 
 @NgModule({
   imports: [
@@ -35,21 +41,21 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatTabsModule,
     MatMenuModule,
     MatToolbarModule,
-    UsersRoutingModule,
+    UserManagementRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    StoreModule.forFeature('user-management', reducers),
+    EffectsModule.forFeature([UserEffects])
   ],
   declarations: [
-    UsersComponent,
-    UserListComponent,
-    AddEditUserComponent,
+    ...fromUserComponents.components,
+    ...fromUserContainers.containers,
   ],
   providers: [
     UsersService,
-  ],
-  entryComponents: [AddEditUserComponent]
+  ]
 })
-export class UsersModule {
+export class UserManagementModule {
   constructor() { /**/ }
 }

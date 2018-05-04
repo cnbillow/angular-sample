@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { User } from '../../../app/models/user.model';
+import { User } from '../../../app/user-management/models/user.model';
 export const MockUserService = {
     get: (params = {}) => {
         return Observable.of([{foo: 'foo'}]);
