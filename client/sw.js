@@ -1,13 +1,11 @@
 const version = 8;
 
 self.addEventListener('install', function (event) {
-  console.log('install ' + version )
 
   self.skipWaiting();
 })
 
 self.addEventListener('activate', function (event) {
-  console.log('active ' + version )
 
 })
 
@@ -20,7 +18,6 @@ self.addEventListener('fetch', function (event) {
       })
     }))
   } else {
-    console.log(event.request.url)
     event.respondWith(fetch(event.request))
   }
 

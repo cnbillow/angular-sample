@@ -4,7 +4,7 @@ import { User } from '../models/user.model';
 import { Observable } from 'rxjs/Observable';
 import { TransferState, makeStateKey } from '@angular/platform-browser';
 import 'rxjs/add/observable/of';
-const url = 'http://localhost:4000/api/v1/users';
+const url = '/api/v1/users';
 
 const USERS_KEY = makeStateKey('users');
 
