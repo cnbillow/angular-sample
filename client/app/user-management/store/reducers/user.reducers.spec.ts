@@ -14,16 +14,21 @@ describe('userReducer', () => {
                 loading: false,
             };
 
-            const expectedResult = [
-                user,
-            ];
+            const expectedResult = {
+                data: [
+                    user,
+                ],
+                loaded: true,
+                loading: false,
+            };
 
             const action = new userActions.LoadUsersSuccess([
                 user,
             ]);
             const result = reducer(currentState, action);
 
-            expect(result).toEqual(expectedResult);
+            expect(result.data).toEqual(expectedResult.data);
+            expect(result.loaded).toEqual(true);
 
         });
     });
@@ -40,13 +45,16 @@ describe('userReducer', () => {
                 loading: false,
             };
 
-            const expectedResult = [
-                newUser,
-            ];
+            const expectedResult = {
+                data: [
+                    newUser,
+                ]
+            };
+
 
             const action = new userActions.SaveUserSuccess(newUser);
             const result = reducer(currentState, action);
-            expect(result).toEqual(expectedResult);
+            expect(result.data).toEqual(expectedResult.data);
         });
     });
 
@@ -66,13 +74,15 @@ describe('userReducer', () => {
                 loading: false,
             };
 
-            const expectedResult = [
-                userEdited,
-            ];
+            const expectedResult = {
+                data: [
+                    userEdited,
+                ]
+            };
 
             const action = new userActions.UpdateUserSuccess(userEdited);
             const result = reducer(currentState, action);
-            expect(result).toEqual(expectedResult);
+            expect(result.data).toEqual(expectedResult.data);
         });
     });
 
@@ -88,11 +98,12 @@ describe('userReducer', () => {
                 loading: false,
             };
 
-            const expectedResult = [];
-
+            const expectedResult = {
+                data: [],
+            };
             const action = new userActions.DeleteUserSuccess(user._id);
             const result = reducer(currentState, action);
-            expect(result).toEqual(expectedResult);
+            expect(result.data).toEqual(expectedResult.data);
         });
     });
 });

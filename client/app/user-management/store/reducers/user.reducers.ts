@@ -18,12 +18,14 @@ export function reducer(state = initialState, action: userActions.Action) {
     case userActions.SET_USERS_SUCCESS: {
       return {
         ...state,
+        loaded: true,
         data: action.payload
       };
     }
     case userActions.LOAD_USERS_SUCCESS: {
       return {
         ...state,
+        loaded: true,
         data: action.payload
       };
     }
