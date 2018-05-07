@@ -8,10 +8,11 @@
     "url": "https://github.com/mzavaletaglobant/angular-samplegi"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=production && node dist/server.js",
+    "start": "cross-env NODE_ENV=production && node run serve-universal",
     "test": "ng test --watch false",
     "lint": "ng lint",
     "rimraf": "rimraf",
+    "postinstall": "npm run build-bundles",
     "clean:client": "npm run rimraf -- dist/browser",
     "clean:server": "npm run rimraf -- dist/server dist/server.js ",
     "serve-mean": "cross-env BUILD_TYPE=mean node dist/server.js",
