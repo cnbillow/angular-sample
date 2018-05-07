@@ -11,7 +11,7 @@
     "url": "https://github.com/mzavaletaglobant/angular-samplegi"
   },
   "scripts": {
-    "start": "NODE_ENV=production && node run serve-universal",
+    "start": "node dist/server.js",
     "test": "ng test --watch false",
     "lint": "ng lint",
     "rimraf": "rimraf",
