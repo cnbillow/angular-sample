@@ -11,22 +11,22 @@
     "url": "https://github.com/mzavaletaglobant/angular-samplegi"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=production && node run serve-universal",
+    "start": "NODE_ENV=production && node run serve-universal",
     "test": "ng test --watch false",
     "lint": "ng lint",
     "rimraf": "rimraf",
     "postinstall": "npm run build-bundles",
     "clean:client": "npm run rimraf -- dist/browser",
     "clean:server": "npm run rimraf -- dist/server dist/server.js ",
-    "serve-mean": "cross-env BUILD_TYPE=mean node dist/server.js",
-    "serve-universal": "cross-env BUILD_TYPE=universal node dist/server.js",
+    "serve-mean": "BUILD_TYPE=mean node dist/server.js",
+    "serve-universal": "BUILD_TYPE=universal node dist/server.js",
     "watch-client": "npm run build-dev --watch",
     "watch-server": "webpack --config webpack.server.config.js --progress --colors --watch",
     "build-dev": "npm run clean:client && webpack --progress --colors -d --watch",
     "build-bundles": "npm run build-pwa && npm run build-server",
     "build-server": "npm run rimraf -- dist/server dist/server.js && ng build --prod --app 2 --output-hashing=false && webpack --config webpack.server.config.js --progress --colors",
-    "build-prod": "npm run clean:client && cross-env NODE_ENV=production BUILD_AOT=1 webpack --progress --profile --bail ",
-    "build-pwa": "npm run clean:client && cross-env NODE_ENV=production BUILD_AOT=1 BUILD_PWA=1 webpack --progress --profile --bail "
+    "build-prod": "npm run clean:client && NODE_ENV=production BUILD_AOT=1 webpack --progress --profile --bail ",
+    "build-pwa": "npm run clean:client && NODE_ENV=production BUILD_AOT=1 BUILD_PWA=1 webpack --progress --profile --bail "
   },
   "private": true,
   "dependencies": {
