@@ -2,6 +2,9 @@
   "name": "angular-universal-pwa",
   "version": "0.0.0",
   "license": "MIT",
+  "engines" : { 
+    "node" : "8.0.0" 
+    },
   "author": "Gustavo Zavaleta <mzavaletavargas@gmail.com>",
   "repository": {
     "type": "git",
