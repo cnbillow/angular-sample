@@ -29,4 +29,4 @@ deploy:
   provider: heroku
   api_key:
     secure: $HEROKU_TOKEN
-  app: rails-test-app-article
+  app: salty-cove-16991
