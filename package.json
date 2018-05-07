@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production && node dist/server.js",
-    "test": "ng test --browsers ChromeHeadless --watch false",
+    "test": "ng test --watch false",
     "lint": "ng lint",
     "rimraf": "rimraf",
     "clean:client": "npm run rimraf -- dist/browser",
