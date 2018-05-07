@@ -41,7 +41,7 @@ const commonConfig = {
     ]
 };
 
-if(process.env.WEBPACK_ANALIZER) {
+if(process.env.WEBPACK_ANALIZER == 1) {
     commonConfig.plugins.push(new BundleAnalyzerPlugin());
 }
 
