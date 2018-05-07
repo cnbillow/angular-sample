@@ -1,36 +1,148 @@
 # Angular Sample
+https://angular-sample-pwa.herokuapp.com/
 
-* Progresive Web Apps
 * Angular Universal
-* Static files (only)  
+* Angular Material 
+* Service Workers
+* NG-RX 
+* Jasmine
+* Node
+* Express
+* Mongoose
+* Heroku
+* Travis
+* Webpack
+
+## Table of Contents
+ - [General folder structure](#general-folder-structure)
+ - [Front End folder structure](#front-end-folder-structure)
+ - [Back End folder structure](#back-end-folder-structure)
+ - [Configuration](#back-end-folder-structure)
+ - [Installation](#back-end-folder-structure)
+ - [Development commands](#development)
+ - [Production commands](#production)
+ - [Serving App](#serving-application)
+ - [Usefull Resources](#usefull-resources)
+ 
+
+## General folder structure
+```
+.
+├── client
+├── config
+├── server
+```
+[Go Top](#table-of-contents)
+
+## Front End folder Structure 
+```
+client
+├── app
+│   ├── app.component.html
+│   ├── app.component.ts
+│   ├── app.module.ts
+│   ├── services
+│   └── user-management
+│       ├── components
+│       │   ├── user-add-edit
+│       │   └── user-list
+│       ├── containers
+│       ├── models
+│       ├── services
+│       ├── store
+│       │   ├── actions
+│       │   ├── effects
+│       │   ├── index.ts
+│       │   └── reducers
+│       │       ├── index.ts
+│       │       ├── user.reducers.spec.ts
+│       │       └── user.reducers.ts
+│       ├── user-management.module.ts
+├── assets
+│   ├── fonts
+│   ├── images
+│   ├── pages
+│   └── styles
+
+```
+[Go Top](#table-of-contents)
+
+## Back End folder Structure 
+
+```
+├── server
+│   ├── models
+│   ├── router
+│   └── server.ts
+```
+[Go Top](#table-of-contents)
 
 ## Configuration
 Create a file `.env` and set your mongodb url
 
-    MONGO_URI = [USER]:[PASS]@[HOST]:[PORT]
-   example: 
-
-    MONGO_URI = test:test@ds.mlab.com:313/heroku_32
-
-Set build type: 
-* mean -> create an app using just static files
-* universal -> create app using angular universal
 ```
-BUILD_TYPE = mean
+MONGO_URI = [USER]:[PASS]@[HOST]:[PORT]
 ```
 
-## Instalation
+Bundle analizer
 
-    git clone https://github.com/mzavaletaglobant/angular-sample
-    yarn install
+```
+WEBPACK_ANALIZER = 0 || 1
+```
+[Go Top](#table-of-contents)
+
+## Installation
+
+It will install and serve the application using angular-universal by default
+
+```
+git clone https://github.com/mzavaletaglobant/angular-sample
+yarn install
+```
+[Go Top](#table-of-contents)
+
+## Development
+Working on development mode
+
+    yarn watch-client
+
+Watch server modifications
+
+    yarn watch-server
+
+[Go Top](#table-of-contents)
+
+
+## Production
+
+Generate Angular production files (it uses aot)
+
+    yarn build-prod
+
+Generate Angular Progresive File apps 
+
+    yarn build-pwa
+
+Generate Client and server Files for deployment 
+
     yarn build-bundles
-    yarn build-server
-    
-   ## Run Server
 
-    yarn start
+[Go Top](#table-of-contents)
+
+
+## Serving application
+
+For serving static Files
+
+    yarn serve-static
+
+For serving server using angular universal
+
+    yarn serve-universal
     
-## usefull Links
+[Go Top](#table-of-contents)
+
+## Usefull resources
 Playing with angular universal and progressive web apps
 
 * https://material.angular.io/
@@ -53,3 +165,6 @@ Playing with angular universal and progressive web apps
 * https://nodejs.org/en/
 
 * https://www.npmjs.com/package/webpack-bundle-analyzer
+
+
+[Go Top](#table-of-contents)

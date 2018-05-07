@@ -18,7 +18,7 @@
     "postinstall": "npm run build-bundles",
     "clean:client": "npm run rimraf -- dist/browser",
     "clean:server": "npm run rimraf -- dist/server dist/server.js ",
-    "serve-mean": "BUILD_TYPE=mean node dist/server.js",
+    "serve-static": "BUILD_TYPE=mean node dist/server.js",
     "serve-universal": "BUILD_TYPE=universal node dist/server.js",
     "watch-client": "npm run build-dev --watch",
     "watch-server": "webpack --config webpack.server.config.js --progress --colors --watch",

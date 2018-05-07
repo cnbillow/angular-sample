@@ -24,7 +24,7 @@ import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../dist/server/main.bundle');
 
-import userRoutes from './router/user';
+import userRouter from './router/user-router';
 
 class Server {
     public app: express.Application;
@@ -93,7 +93,7 @@ class Server {
         router = express.Router();
 
         this.app.use('/', router);
-        this.app.use('/api/v1/users', userRoutes);
+        this.app.use('/api/v1/users', userRouter);
         switch (this.buildType) {
             case 'mean':
                 this.configMean();
