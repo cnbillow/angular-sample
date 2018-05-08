@@ -1,33 +1,83 @@
-
- <div>
-    <input placeholder="Name" [(ngModel)]= "user.name">
-</div>
-<div [(ngModel)]= "user.active">
-</div>
-<div>
-    <input placeholder="Role" [(ngModel)]= "user.role">
+<div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="name" [(ngModel)]='user.name'>
 </div>
 
-<div>
-    <input placeholder="Mail" [(ngModel)]= "user.mail">
+<div class="custom-control custom-checkbox mb-3">
+    <input type="checkbox" class="custom-control-input" id="active" required [(ngModel)]='user.active'>
+    <label class="custom-control-label" for="active">User Active</label>
+</div>
+
+<div class="form-group">
+    <label for="role">Role</label>
+    <input type="text" class="form-control" id="role" placeholder="role" [(ngModel)]='user.role'>
+</div>
+<div class="form-group">
+    <label for="email">Mail</label>
+    <input type="text" class="form-control" id="mail" placeholder="mail" [(ngModel)]='user.mail'>
+</div>
+
+<div class="form-group">
+    <label for="location">Location</label>
+    <input type="text" class="form-control" id="location" placeholder="location" [(ngModel)]='user.location'>
+</div>
+
+<div class="form-group">
+    <label for="url">Mail</label>
+    <input type="text" class="form-control" id="url" placeholder="url" [(ngModel)]='user.url'>
 </div>
 
 
-<div>
-    <input placeholder="Phone Number" [(ngModel)]= "user.phoneNumber">
+<div class="form-group">
+    <label for="nphoneNumberame">phoneNumber</label>
+    <input type="text" class="form-control" id="phoneNumber" placeholder="phoneNumber" [(ngModel)]='user.phoneNumber'>
 </div>
 
-
-<div>
-    <input placeholder="Location" [(ngModel)]= "user.location">
-</div>
-
-<div>
-        <input  placeholder="Profile Url" [(ngModel)]= "user.url">
+<div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" placeholder="description" [(ngModel)]='user.description'>
     </div>
+<button type="submit" class="btn btn-primary" (click)="save()">
+    Submit
+</button>
 
-    <div>
-            <input placeholder="Description" [(ngModel)]= "user.description">
-        </div>
-    
-<button (click)="save()">SAVE</button>
+<div *ngFor="let user of users$ | async">
+    {{user.name}}
+</div>
+
+<!-- 
+
+
+
+<div>
+    <input placeholder="Name" [(ngModel)]="user?.name">
+</div>
+<div [(ngModel)]="user?.active">
+</div>
+<div>
+    <input placeholder="Role" [(ngModel)]="user?.role">
+</div>
+
+<div>
+    <input placeholder="Mail" [(ngModel)]="user?.mail">
+</div>
+
+
+<div>
+    <input placeholder="Phone Number" [(ngModel)]="user?.phoneNumber">
+</div>
+
+
+<div>
+    <input placeholder="Location" [(ngModel)]="user?.location">
+</div>
+
+<div>
+    <input placeholder="Profile Url" [(ngModel)]="user?.url">
+</div>
+
+<div>
+    <input placeholder="Description" [(ngModel)]="user?.description">
+</div>
+
+<button (click)="save()">SAVE</button> -->

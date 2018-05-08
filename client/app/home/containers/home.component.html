@@ -1,13 +1,9 @@
-<div>
-    <div>
-        <ng-template>
-            <a (click)="redirectToUsers()">Users </a>
-        </ng-template>
-    </div>
-    <div>
-        <ng-template>
-            <a (click)="redirectToRoles()">Roles </a>
-        </ng-template>
-    </div>
-</div>
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" (click)="redirectToUsers()">Users </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" (click)="redirectToRoles()">Roles </a>
+    </li>
+</ul>
 <router-outlet></router-outlet>

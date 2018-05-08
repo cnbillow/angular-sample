@@ -1,10 +1,28 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Location</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | async">
+        <td>{{user._id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.role}}</td>
+        <td>{{user.location}}</td>
+        <td><a (click)="editUser(user)">Edit</a></td>
+        <td><a (click)="deleteUser(user._id)">Remove</a></td>
+      </tr>
+    </tbody>
+  </table>
 <div>
-    <div *ngFor="let user of users | async">
-      <p>{{user.name}}</p>
-      <p>{{user.role}}</p>
-      <p>{{user.location}}</p>
-    </div>
-  
+ 
+
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
   
