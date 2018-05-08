@@ -7,7 +7,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -37,7 +36,6 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     AppComponent,
   ],
   imports: [
-    MatToolbarModule,
     BrowserModule.withServerTransition({appId: 'angular-sample'}),
     environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
     HttpClientModule,

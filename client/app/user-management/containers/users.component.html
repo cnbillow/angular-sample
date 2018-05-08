@@ -1,7 +1,6 @@
 <div>
     <div>
-        <button mat-button (click)="createUser()">
-            <mat-icon>add_circle</mat-icon>
+        <button  (click)="createUser()">
             Add new users
         </button>
         <input 
@@ -9,11 +8,7 @@
           matInput 
           placeholder="Search" 
           (keyup)="searchTerm.next($event.target.value)">
-       <!--  <mat-list>
-            <mat-list-item> Pepper </mat-list-item>
-            <mat-list-item> Salt </mat-list-item>
-            <mat-list-item> Paprika </mat-list-item>
-        </mat-list> -->
+
     </div>
 
     <div>

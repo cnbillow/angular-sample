@@ -1,12 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { TransferState, makeStateKey } from '@angular/platform-browser';
-import { MatDialog } from '@angular/material/dialog';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/do';
@@ -32,7 +30,6 @@ export class UsersComponent implements OnInit {
   constructor(
     private store: Store<fromStore.UserManagementState>,
     private transferState: TransferState,
-    public dialog: MatDialog
   ) {
     this.users$ = this.store.select<any>(fromStore.getAllUsers);
   }
@@ -54,7 +51,7 @@ export class UsersComponent implements OnInit {
   }
 
   public createUser() {
-    const dialogRef = this.dialog.open(UserAddEditComponent, {
+   /*  const dialogRef = this.dialog.open(UserAddEditComponent, {
       width: '450px',
       data: {
         user: {
@@ -67,7 +64,7 @@ export class UsersComponent implements OnInit {
       if (user) {
         this.saveUser(user);
       }
-    });
+    }); */
   }
 
   public loadUsers() {

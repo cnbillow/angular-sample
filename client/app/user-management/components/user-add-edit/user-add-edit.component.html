@@ -1,34 +1,33 @@
 
- <mat-form-field>
-    <input matInput placeholder="Name" [(ngModel)]= "user.name">
-</mat-form-field>
-<mat-slide-toggle [checked]="user.active" [(ngModel)]= "user.active">
-</mat-slide-toggle>
-<!-- <img class="md-card-image"  mat-card-image src="{{user.url}}" alt="{{user.name}}"> -->
-<mat-form-field>
-    <input matInput placeholder="Role" [(ngModel)]= "user.role">
-</mat-form-field>
+ <div>
+    <input placeholder="Name" [(ngModel)]= "user.name">
+</div>
+<div [(ngModel)]= "user.active">
+</div>
+<div>
+    <input placeholder="Role" [(ngModel)]= "user.role">
+</div>
 
-<mat-form-field>
-    <input matInput placeholder="Mail" [(ngModel)]= "user.mail">
-</mat-form-field>
-
-
-<mat-form-field>
-    <input matInput placeholder="Phone Number" [(ngModel)]= "user.phoneNumber">
-</mat-form-field>
+<div>
+    <input placeholder="Mail" [(ngModel)]= "user.mail">
+</div>
 
 
-<mat-form-field>
-    <input matInput placeholder="Location" [(ngModel)]= "user.location">
-</mat-form-field>
+<div>
+    <input placeholder="Phone Number" [(ngModel)]= "user.phoneNumber">
+</div>
 
-<mat-form-field>
-        <input matInput placeholder="Profile Url" [(ngModel)]= "user.url">
-    </mat-form-field>
 
-    <mat-form-field>
-            <input matInput placeholder="Description" [(ngModel)]= "user.description">
-        </mat-form-field>
+<div>
+    <input placeholder="Location" [(ngModel)]= "user.location">
+</div>
+
+<div>
+        <input  placeholder="Profile Url" [(ngModel)]= "user.url">
+    </div>
+
+    <div>
+            <input placeholder="Description" [(ngModel)]= "user.description">
+        </div>
     
-<button mat-button (click)="save()">SAVE</button>
+<button (click)="save()">SAVE</button>

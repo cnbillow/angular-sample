@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../models/user.model';
-import { MatDialog } from '@angular/material/dialog';
 import { UserAddEditComponent } from '../';
 
 @Component({
@@ -21,10 +20,10 @@ export class UserListComponent {
     'actions'
   ];
 
-  constructor(public dialog: MatDialog) {}
+  constructor() {}
 
   public editUser(user: User) {
-    const dialogRef = this.dialog.open(UserAddEditComponent, {
+    /* const dialogRef = this.dialog.open(UserAddEditComponent, {
       width: '450px',
       data: {
         user: { ...user }
@@ -35,7 +34,7 @@ export class UserListComponent {
       if (result) {
         this.userToEdit.emit(result);
       }
-    });
+    }); */
   }
 
   public deleteUser(_id: string) {
