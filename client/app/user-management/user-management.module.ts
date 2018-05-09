@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { UserManagementRoutingModule } from './user-management-routing.module';
 
-import * as fromUserComponents from './components';
 import { UserAddEditComponent } from './components';
+
+import * as fromUserComponents from './components';
 
 import * as fromUserContainers from './containers';
 
@@ -31,7 +31,6 @@ import { reducers, effects } from './store';
     ...fromUserContainers.containers
   ],
   providers: [...fromServices.services],
-  entryComponents: [UserAddEditComponent]
 })
 export class UserManagementModule {
   constructor() {

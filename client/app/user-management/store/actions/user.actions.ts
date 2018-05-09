@@ -1,9 +1,6 @@
 import { User } from '../../models/user.model';
  /* tslint:disable */
 
-export const SET_USERS = '[Users] Set Users';
-export const SET_USERS_SUCCESS = '[Users] Set Users Success';
-export const SET_USERS_FAIL = '[Users] Set Users Fail';
 export const LOAD_USERS = '[Users] Load Users';
 export const LOAD_USERS_SUCCESS = '[Users] Load Users Success';
 export const LOAD_USERS_FAIL = '[Users] Load Users Fail';
@@ -16,21 +13,6 @@ export const UPDATE_USER_FAIL = '[Users] Update User Fail';
 export const DELETE_USER = '[Users] Delete Delete';
 export const DELETE_USER_SUCCESS = '[Users] Delete User Success';
 export const DELETE_USER_FAIL = '[Users] Delete User Fail';
-
-export class SetUsers {
-    readonly type = SET_USERS;
-    constructor() {}
-}
-
-export class SetUsersSuccess {
-    readonly type = SET_USERS_SUCCESS;
-    constructor(public payload: any) {}
-}
-
-export class SetUsersFail {
-    readonly type = SET_USERS_FAIL;
-    constructor(public payload: any) {}
-}
 
 export class LoadUsers {
     readonly type = LOAD_USERS;
@@ -74,7 +56,6 @@ export class DeleteUserSuccess {
 
 export type Action = 
 DeleteUser | DeleteUserSuccess |
-SetUsers | SetUsersSuccess |
 LoadUsers | LoadUsersSuccess |
 SaveUser | SaveUserSuccess |
 UpdateUser | UpdateUserSuccess ;

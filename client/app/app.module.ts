@@ -1,4 +1,4 @@
-import { NgModule, PLATFORM_ID, APP_ID, Inject  } from '@angular/core';
+import { NgModule, PLATFORM_ID, APP_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
@@ -6,7 +6,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -36,7 +35,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     AppComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'angular-sample'}),
+    BrowserModule.withServerTransition({ appId: 'angular-sample' }),
     environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
     HttpClientModule,
     HttpModule,
@@ -53,7 +52,7 @@ export class AppModule {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
     @Inject(APP_ID) private appId: string) {
-      const platform = isPlatformBrowser(platformId) ?
+    const platform = isPlatformBrowser(platformId) ?
       'in the browser' : 'on the server';
   }
- }
+}

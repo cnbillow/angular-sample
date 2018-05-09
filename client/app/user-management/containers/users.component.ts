@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 
 import { TransferState, makeStateKey } from '@angular/platform-browser';
 
@@ -24,8 +24,10 @@ const USERS_KEY = makeStateKey('users');
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  public users$: Observable<any>;
 
+  @ViewChild('userModal') public userModal;
+  public users$: Observable<any>;
+  public userToEdit: User;
   public searchTerm = new Subject<string>();
   constructor(
     private store: Store<fromStore.UserManagementState>,
@@ -35,6 +37,7 @@ export class UsersComponent implements OnInit {
   }
 
   public ngOnInit() {
+
     this.loadUsers();
     this.search(this.searchTerm).subscribe();
   }
@@ -50,30 +53,8 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  public createUser() {
-   /*  const dialogRef = this.dialog.open(UserAddEditComponent, {
-      width: '450px',
-      data: {
-        user: {
-          isNewUser: true
-        }
-      }
-    });
-
-    dialogRef.afterClosed().subscribe((user: User) => {
-      if (user) {
-        this.saveUser(user);
-      }
-    }); */
-  }
-
   public loadUsers() {
-    const found = this.transferState.hasKey(USERS_KEY);
-    if (found) {
-      this.store.dispatch(new userActions.SetUsers());
-    } else {
-      this.store.dispatch(new userActions.LoadUsers());
-    }
+    this.store.dispatch(new userActions.LoadUsers());
   }
 
   public saveUser(user: User) {

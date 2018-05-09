@@ -2,20 +2,14 @@
     <button type="button" class="btn btn-success" routerLink="/add">
         Add new users
     </button>
+
+    
     <div class="input-group">
-        <input 
-            placeholder="Search" 
-            (keyup)="searchTerm.next($event.target.value)"
-            type="text" 
-            class="form-control" 
-            aria-label="Small" 
+        <input placeholder="Search" (keyup)="searchTerm.next($event.target.value)" type="text" class="form-control" aria-label="Small"
             aria-describedby="inputGroup-sizing-sm">
     </div>
 </div>
 
 <div>
-    <app-user-list 
-    [users]="users$" 
-    (userToEdit)="editUser($event)" 
-    (userToRemove)="removeUser($event)"></app-user-list>
+    <app-user-list [users]="users$ | async" (userToRemove)="removeUser($event)"></app-user-list>
 </div>
