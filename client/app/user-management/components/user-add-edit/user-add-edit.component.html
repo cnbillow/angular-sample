@@ -30,5 +30,5 @@
     <input type="text" class="form-control" id="description" placeholder="description" [(ngModel)]='user.description'>
 </div>
 
-<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-secondary" data-dismiss="modal" [routerLink]="['/']">Back</button>
 <button type="button" class="btn btn-primary" (click)="save()" data-dismiss="modal">Save changes</button>
