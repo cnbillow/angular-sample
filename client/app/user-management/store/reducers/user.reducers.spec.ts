@@ -51,7 +51,6 @@ describe('userReducer', () => {
                 ]
             };
 
-
             const action = new userActions.SaveUserSuccess(newUser);
             const result = reducer(currentState, action);
             expect(result.data).toEqual(expectedResult.data);

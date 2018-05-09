@@ -1,12 +1,10 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 
 import { TransferState, makeStateKey } from '@angular/platform-browser';
-import { MatDialog } from '@angular/material/dialog';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/do';
@@ -26,13 +24,14 @@ const USERS_KEY = makeStateKey('users');
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  public users$: Observable<any>;
 
+  @ViewChild('userModal') public userModal;
+  public users$: Observable<any>;
+  public userToEdit: User;
   public searchTerm = new Subject<string>();
   constructor(
     private store: Store<fromStore.UserManagementState>,
     private transferState: TransferState,
-    public dialog: MatDialog
   ) {
     this.users$ = this.store.select<any>(fromStore.getAllUsers);
   }
@@ -53,30 +52,8 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  public createUser() {
-    const dialogRef = this.dialog.open(UserAddEditComponent, {
-      width: '450px',
-      data: {
-        user: {
-          isNewUser: true
-        }
-      }
-    });
-
-    dialogRef.afterClosed().subscribe((user: User) => {
-      if (user) {
-        this.saveUser(user);
-      }
-    });
-  }
-
   public loadUsers() {
-    const found = this.transferState.hasKey(USERS_KEY);
-    if (found) {
-      this.store.dispatch(new userActions.SetUsers());
-    } else {
-      this.store.dispatch(new userActions.LoadUsers());
-    }
+    this.store.dispatch(new userActions.LoadUsers());
   }
 
   public saveUser(user: User) {

@@ -29,7 +29,7 @@ class UserRouter {
 
     public updateUser(req: Request, res: Response): void {
         User.findByIdAndUpdate(req.body._id, req.body, (err, user) => {
-            res.send(user);
+            res.send(req.body);
         });
     }
 

@@ -1,24 +1,15 @@
 <div>
-    <div>
-        <button mat-button (click)="createUser()">
-            <mat-icon>add_circle</mat-icon>
-            Add new users
-        </button>
-        <input 
-          type="string" 
-          matInput 
-          placeholder="Search" 
-          (keyup)="searchTerm.next($event.target.value)">
-       <!--  <mat-list>
-            <mat-list-item> Pepper </mat-list-item>
-            <mat-list-item> Salt </mat-list-item>
-            <mat-list-item> Paprika </mat-list-item>
-        </mat-list> -->
-    </div>
+    <button type="button" class="btn btn-success" routerLink="/add">
+        Add new users
+    </button>
 
-    <div>
-        <app-user-list [users]="users$" 
-        (userToEdit)="editUser($event)" 
-        (userToRemove)="removeUser($event)"></app-user-list>
+    
+    <div class="input-group">
+        <input placeholder="Search" (keyup)="searchTerm.next($event.target.value)" type="text" class="form-control" aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm">
     </div>
+</div>
+
+<div>
+    <app-user-list [users]="users$ | async" (userToRemove)="removeUser($event)"></app-user-list>
 </div>

@@ -28,7 +28,7 @@ export class UsersService {
     }
 
     public update(data: User) {
-        return this.http.put(url, data);
+       return this.http.put(url, data);
     }
 
     public save(data: User) {

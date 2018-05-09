@@ -1,31 +1,51 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from '../../models/user.model';
 
+import * as userActions from '../../store/actions';
+import * as fromStore from '../../store';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
-    selector: 'app-add-edit-user',
-    templateUrl: 'user-add-edit.component.html',
-    styleUrls: ['./user-add-edit.component.scss']
-  })
-  export class UserAddEditComponent {
+  selector: 'app-add-edit-user',
+  templateUrl: 'user-add-edit.component.html',
+  styleUrls: ['./user-add-edit.component.scss']
+})
+export class UserAddEditComponent {
+  public users$: Observable<any>;
+  public user: User = new User();
+  public validUser: boolean;
 
-    public user: User;
+  constructor(
+    private store: Store<fromStore.UserManagementState>,
+    private activateRoute: ActivatedRoute,
+    private router: Router) {
+    this.users$ = this.store.select<any>(fromStore.getAllUsers);
 
-    constructor(
-      public dialogRef: MatDialogRef<UserAddEditComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: any) {
-        this.user = data.user;
-        if (this.user.isNewUser) {
-          this.user.url = 'svg-1';
-        }
-       }
+    this.activateRoute.params.subscribe((params) => {
+      if (params.id) {
+        this.users$.subscribe((users: User[]) => {
+          this.user = {
+            ...users.find((user: User) => {
+              return user._id === params.id;
+            })
+          };
+          if (this.user) {
+            this.validUser = true;
+          }
+        });
+      }
+    });
+  }
 
-    public onNoClick(): void {
-      this.dialogRef.close({name: 'test'});
+  public save() {
+    if (this.validUser) {
+      this.store.dispatch(new userActions.UpdateUser({ ...this.user }));
+    } else {
+      this.store.dispatch(new userActions.SaveUser({ ...this.user }));
     }
-
-    public save() {
-      this.dialogRef.close(this.user);
-    }
+    this.router.navigateByUrl('/');
+  }
 
 }

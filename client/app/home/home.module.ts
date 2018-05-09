@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './containers/home.component';
 import { HomeRoutingModule } from './home-routing.module';
-import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -11,7 +10,6 @@ import { RouterModule } from '@angular/router';
         CommonModule,
         RouterModule,
         HomeRoutingModule,
-        MatTabsModule,
     ],
     exports: [],
     providers: [],
