@@ -16,7 +16,7 @@
     "lint": "ng lint",
     "lint-fix": "tslint --fix 'client/**/*{.ts,.tsx}'",
     "rimraf": "rimraf",
-    "postinstall": "npm run build-bundles",
+    "heroku-postbuild": "npm run build-bundles",
     "clean:client": "npm run rimraf -- dist/browser",
     "clean:server": "npm run rimraf -- dist/server dist/server.js ",
     "serve-static": "BUILD_TYPE=mean node dist/server.js",
