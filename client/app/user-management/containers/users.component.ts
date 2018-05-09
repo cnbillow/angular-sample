@@ -37,7 +37,6 @@ export class UsersComponent implements OnInit {
   }
 
   public ngOnInit() {
-
     this.loadUsers();
     this.search(this.searchTerm).subscribe();
   }
