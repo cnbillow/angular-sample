@@ -18,8 +18,13 @@ before_install:
  - sudo apt-get install -y libappindicator1 fonts-liberation
  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
  - sudo dpkg -i google-chrome*.deb
- - npm install -g @angular/cli
- - ng test
+ - npm install add -g @angular/cli
+ - npm install add -g tslint
+script:
+  - yarn test
+  - yarn lint
+  - yarn --ignore-engines
+  - yarn build-bundles
 
 deploy:
   provider: heroku
