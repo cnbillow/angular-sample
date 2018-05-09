@@ -45,7 +45,7 @@ export class UserAddEditComponent {
     } else {
       this.store.dispatch(new userActions.SaveUser({ ...this.user }));
     }
-    this.router.navigateByUrl('/');
+    this.router.navigate(['home', 'users']);
   }
 
 }

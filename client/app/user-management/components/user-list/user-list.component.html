@@ -17,10 +17,10 @@
         <td>{{user.role}}</td>
         <td>{{user.location}}</td>
         <td>
-          <a [routerLink]="['/edit', user._id]">Edit</a>
+          <a [routerLink]="[user._id]">Edit</a>
         </td>
         <td>
-          <a href="#" (click)="deleteUser(user._id)">Remove</a>
+          <a  (click)="deleteUser(user._id)">Remove</a>
         </td>
       </tr>
     </tbody>

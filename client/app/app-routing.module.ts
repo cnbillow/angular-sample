@@ -9,12 +9,16 @@ export function loadModule(module) {
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     loadChildren: './home/home.module#HomeModule',
   },
   {
+    path: 'login',
+    loadChildren: './login/login.module#LoginModule',
+  },
+  {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'login'
   },
 ];
 

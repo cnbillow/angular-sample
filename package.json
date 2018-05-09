@@ -49,8 +49,10 @@
     "@ngrx/store-devtools": "^5.2.0",
     "@nguniversal/express-engine": "^5.0.0",
     "@nguniversal/module-map-ngfactory-loader": "^5.0.0",
+    "angularfire2": "^5.0.0-rc.7",
     "core-js": "^2.4.1",
     "debug": "~2.6.9",
+    "firebase": "^5.0.1",
     "rxjs": "^5.5.0",
     "tslint": "^5.9.1",
     "zone.js": "^0.8.14"

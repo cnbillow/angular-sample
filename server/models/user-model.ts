@@ -1,4 +1,4 @@
-import { Schema, model, Mongoose } from 'mongoose';
+import { Schema, model, Mongoose, Collection } from 'mongoose';
 
 const UserSchema: Schema = new Schema({
     name: {
@@ -20,6 +20,7 @@ const UserSchema: Schema = new Schema({
     location: String,
     joinDate: Date,
     description: String,
-  });
+  },
+{collection: 'users'});
 
 export default model('User', UserSchema);

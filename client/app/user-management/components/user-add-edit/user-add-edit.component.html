@@ -1,3 +1,5 @@
+ <h1 class="h2">User</h1>
+
 <div class="form-group">
     <input type="text" class="form-control" id="name" placeholder="name" [(ngModel)]='user.name'>
 </div>
@@ -30,5 +32,5 @@
     <input type="text" class="form-control" id="description" placeholder="description" [(ngModel)]='user.description'>
 </div>
 
-<button type="button" class="btn btn-secondary" data-dismiss="modal" [routerLink]="['/']">Back</button>
+<button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="../">Back</button>
 <button type="button" class="btn btn-primary" (click)="save()" data-dismiss="modal">Save changes</button>

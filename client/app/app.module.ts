@@ -4,6 +4,10 @@ import { isPlatformBrowser } from '@angular/common';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
+// firebasse
+import { AngularFireModule } from 'angularfire2';
+
+// app
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -35,6 +39,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     AppComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserModule.withServerTransition({ appId: 'angular-sample' }),
     environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
     HttpClientModule,

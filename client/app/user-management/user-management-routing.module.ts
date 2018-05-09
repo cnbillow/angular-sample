@@ -6,7 +6,8 @@ import { UserAddEditComponent } from './components';
 const routes: Routes = [
     { path: '', component: UsersComponent },
     { path: 'add', component: UserAddEditComponent },
-    { path: 'edit/:id', component: UserAddEditComponent }
+    { path: ':id', component: UserAddEditComponent },
+
 ];
 
 @NgModule({
@@ -17,4 +18,4 @@ const routes: Routes = [
         RouterModule
     ]
 })
-export class UserManagementRoutingModule {}
+export class UserManagementRoutingModule { }

@@ -7,16 +7,6 @@ import { Router } from '@angular/router';
     styleUrls: ['home.component.scss']
 })
 export class HomeComponent {
-    constructor(private router: Router) {
-    }
+    constructor() { /**/}
 
-    public redirectToUsers() {
-        this.router.navigate(['']);
-
-    }
-
-    public redirectToRoles() {
-        this.router.navigate(['roles']);
-
-    }
 }
