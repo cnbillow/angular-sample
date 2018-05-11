@@ -17,7 +17,8 @@ class UserRouter {
 
         User.find(options, null, (err, users) => {
             res.send(users);
-        });
+        })
+        .limit(10);
     }
 
     public createUser(req: Request, res: Response): void {

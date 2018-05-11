@@ -1,1 +1,45 @@
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-md">
+        <a class="navbar-brand" href="#">Manage your team</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="material-icons">menu</i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="nav-link active" href="#" [routerLink]="['users']">
+                    Users <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" [routerLink]="['roles']">
+                    Roles
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    Products
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    Customers
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    Reports
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    Integrations
+                  </a>
+                </li>
+              </ul>
+        </div>
+      </nav>
+
+      <div class="container mt-3">
+            <router-outlet></router-outlet>
+      </div>
+
