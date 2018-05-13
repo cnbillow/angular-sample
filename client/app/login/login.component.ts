@@ -15,7 +15,7 @@ export class LoginComponent {
     public login() {
         this.afAuth.auth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider())
         .then(() => {
-            this.router.navigate(['home', 'users']);
+            this.router.navigate(['users']);
         });
     }
 }

@@ -40,7 +40,7 @@ export function reducer(state = initialState, action: userActions.Action) {
     case userActions.DELETE_USER_SUCCESS: {
       return {
         ...state,
-        data: state.data.filter((user) => user._id !== action.payload)
+        data: state.data.filter((user) =>  !action.payload.includes(user._id))
       };
     }
     default: {

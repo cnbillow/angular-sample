@@ -64,7 +64,8 @@ export class UsersComponent implements OnInit {
     this.store.dispatch(new userActions.UpdateUser(user));
   }
 
-  public removeUser(_id: string) {
-    this.store.dispatch(new userActions.DeleteUser(_id));
+  public removeUser(userIds: any) {
+    const ids = Object.keys(userIds);
+    this.store.dispatch(new userActions.DeleteUser(ids));
   }
 }

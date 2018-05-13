@@ -6,7 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { UserManagementRoutingModule } from './user-management-routing.module';
-
 import { UserAddEditComponent } from './components';
 
 import * as fromUserComponents from './components';
@@ -16,9 +15,11 @@ import * as fromUserContainers from './containers';
 import * as fromServices from './services';
 
 import { reducers, effects } from './store';
+import { NavBarModule } from '../../nav-bar/nav-bar.module';
 
 @NgModule({
   imports: [
+    NavBarModule,
     UserManagementRoutingModule,
     ReactiveFormsModule,
     FormsModule,

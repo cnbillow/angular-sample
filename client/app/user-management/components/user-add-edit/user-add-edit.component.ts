@@ -31,7 +31,7 @@ export class UserAddEditComponent {
               return user._id === params.id;
             })
           };
-          if (this.user) {
+          if (this.user._id) {
             this.validUser = true;
           }
         });
@@ -45,7 +45,7 @@ export class UserAddEditComponent {
     } else {
       this.store.dispatch(new userActions.SaveUser({ ...this.user }));
     }
-    this.router.navigate(['home', 'users']);
+    this.router.navigate(['users']);
   }
 
 }

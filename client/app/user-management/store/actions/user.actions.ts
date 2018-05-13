@@ -46,12 +46,12 @@ export class UpdateUserSuccess {
 
 export class DeleteUser {
     readonly type = DELETE_USER;
-    constructor(public payload: string) {}
+    constructor(public payload: any) {}
 }
 
 export class DeleteUserSuccess {
     readonly type = DELETE_USER_SUCCESS;
-    constructor(public payload: string) {}
+    constructor(public payload: any) {}
 }
 
 export type Action = 

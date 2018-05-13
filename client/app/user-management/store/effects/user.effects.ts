@@ -44,7 +44,7 @@ export class UserEffects {
     .ofType(userActions.DELETE_USER)
     .switchMap((action: userActions.DeleteUser) =>
       this.userService.delete(action.payload))
-    .map((user: User) => new userActions.DeleteUserSuccess(user._id));
+    .map((usersDeleted) => new userActions.DeleteUserSuccess(usersDeleted));
 
   constructor(private userService: UsersService, private actions$: Actions) { }
 }

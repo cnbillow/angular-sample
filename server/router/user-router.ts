@@ -35,8 +35,8 @@ class UserRouter {
     }
 
     public deleteUser(req: Request, res: Response): void {
-        User.findByIdAndRemove(req.params._id, (err, resp) => {
-            res.send(resp);
+        User.deleteMany({_id: { $in: req.body}}, (err) => {
+            res.send(req.body);
         });
     }
 
@@ -44,7 +44,7 @@ class UserRouter {
         this.router.get('/', this.getUsers);
         this.router.post('/', this.createUser);
         this.router.put('/', this.updateUser);
-        this.router.delete('/:_id', this.deleteUser);
+        this.router.post('/delete', this.deleteUser);
         return this.router;
     }
 

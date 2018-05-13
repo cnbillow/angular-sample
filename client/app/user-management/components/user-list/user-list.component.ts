@@ -12,18 +12,24 @@ import { Observable } from 'rxjs/Observable';
 export class UserListComponent {
   @Input() public users;
   @Output() public userToRemove = new EventEmitter<any> ();
-  @Output() public userToEdit = new EventEmitter<any> ();
 
-  public displayedColumns = [
-    'name',
-    'role',
-    'location',
-    'actions'
-  ];
+  public usersToRemove: any = {};
+  public allSelected: boolean;
 
   constructor() { /* */}
 
-  public deleteUser(_id: string) {
-    this.userToRemove.emit(_id);
+  public selectAllUsers(input) {
+    this.users.forEach((user) => {
+      this.selectUser(input, user._id);
+      this.allSelected = input.target.checked;
+    });
+  }
+
+  public selectUser(input, _id) {
+    input.target.checked ? this.usersToRemove[_id] = _id : delete this.usersToRemove[_id];
+  }
+
+  public removeUsers() {
+    this.userToRemove.emit({...this.usersToRemove});
   }
 }

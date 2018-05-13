@@ -35,7 +35,7 @@ export class UsersService {
         return this.http.post(url, data);
     }
 
-    public delete(_id: string) {
-        return this.http.delete(`${url}/${_id}`);
+    public delete(ids: any) {
+        return this.http.post(`${url}/delete`, ids);
     }
 }
