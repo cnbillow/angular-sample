@@ -6,11 +6,6 @@ import { HomeComponent } from './containers/home.component';
 const routes: Routes = [
     {
         path: '', component: HomeComponent,
-        children: [
-            { path: 'users', loadChildren:
-            '../user-management/user-management.module#UserManagementModule' },
-            { path: 'roles', loadChildren: '../roles/roles.module#RolesModule' },
-        ]
     }
 ];
 

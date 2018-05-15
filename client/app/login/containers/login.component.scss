@@ -1,12 +1,12 @@
 .login {
     height: 100%;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-color: #e9e9e9;
     display: flex;
 }
 
 .card {
-    widows: 18rem;
+    width: 37rem;
     height: min-content;
     margin: auto;
 }
@@ -14,3 +14,4 @@
 .card-body {
     margin: auto;
 }
+

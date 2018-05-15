@@ -17,14 +17,6 @@ const routes: Routes = [
     loadChildren: './login/login.module#LoginModule',
   },
   {
-    path: 'users',
-    loadChildren: './user-management/user-management.module#UserManagementModule',
-  },
-  {
-    path: 'roles',
-    loadChildren: './roles/roles.module#RolesModule',
-  },
-  {
     path: '**',
     redirectTo: 'login'
   },
