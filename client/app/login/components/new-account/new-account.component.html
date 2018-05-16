@@ -1,0 +1,55 @@
+<div class="login">
+    <div class="card">
+        <div class="card-body">
+            <h4>Create Account</h4>
+            <span>Fill information to create a new user</span>
+            <form class="form mt-2">
+                <div class="form-group">
+                    <label for="new-email"
+                           class="bmd-label-floating">Full Name</label>
+                    <input type="new-email"
+                           [ngModel]="user?.fullname"
+                           (ngModelChange)="user.fullname=$event"
+                           name="new-email"
+                           class="form-control"
+                           id="new-email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="new-email"
+                           class="bmd-label-floating">email address</label>
+                    <input type="new-email"
+                           [ngModel]="user?.email"
+                           (ngModelChange)="user.email=$event"
+                           name="new-email"
+                           class="form-control"
+                           id="new-email">
+                </div>
+                <div class="form-group">
+                    <label for="password"
+                           class="bmd-label-floating">Password</label>
+                    <input type="password"
+                           [ngModel]="user?.password"
+                           (ngModelChange)="user.password=$event"
+                           name="password"
+                           class="form-control"
+                           id="password">
+                </div>
+
+              
+                <div class="actions mt-5">
+                    <p class=""><a href="#" routerLink="/">Back</a></p>
+
+                    <button type="button"
+                            class="btn btn-raised btn-primary"
+                            (click)="createAccount()">
+                    Crete Account</button>
+
+
+                </div>
+
+
+            </form>
+          </div>
+    </div>
+</div>

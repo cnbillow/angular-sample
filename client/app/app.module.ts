@@ -29,6 +29,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { LoginModule } from './login/login.module';
+import { AuthGuard } from './_guards/auth.guard';
 
 /* tslint:disable-next-line */
 export const metaReducers: MetaReducer<any>[] = !environment.production
@@ -53,7 +54,8 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AuthGuard]
 })
 export class AppModule {
   constructor(
