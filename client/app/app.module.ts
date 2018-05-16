@@ -28,6 +28,7 @@ import { EffectsModule } from '@ngrx/effects';
  */
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { LoginModule } from './login/login.module';
 
 /* tslint:disable-next-line */
 export const metaReducers: MetaReducer<any>[] = !environment.production
@@ -39,6 +40,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     AppComponent,
   ],
   imports: [
+    LoginModule,
     AngularFireModule.initializeApp(environment.firebase),
     BrowserModule.withServerTransition({ appId: 'angular-sample' }),
     environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],

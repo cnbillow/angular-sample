@@ -6,12 +6,16 @@
 }
 
 .card {
-    width: 37rem;
+    width: 30rem;
     height: min-content;
     margin: auto;
 }
 
 .card-body {
-    margin: auto;
+    margin: 1.7rem;
 }
 
+.card-header {
+    display: flex;
+    justify-content: center;
+}
