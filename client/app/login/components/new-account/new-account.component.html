@@ -5,14 +5,14 @@
             <span>Fill information to create a new user</span>
             <form class="form mt-2">
                 <div class="form-group">
-                    <label for="new-email"
+                    <label for="full-email"
                            class="bmd-label-floating">Full Name</label>
-                    <input type="new-email"
-                           [ngModel]="user?.fullname"
-                           (ngModelChange)="user.fullname=$event"
-                           name="new-email"
+                    <input type="full-email"
+                           [ngModel]="user?.displayName"
+                           (ngModelChange)="user.displayName=$event"
+                           name="full-email"
                            class="form-control"
-                           id="new-email">
+                           id="full-email">
                 </div>
                 
                 <div class="form-group">

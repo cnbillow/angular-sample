@@ -4,16 +4,17 @@ import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
+import { LogInService } from '../services/login.service';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    providers: [AngularFireAuth]
 })
 export class LoginComponent {
     public credential: any = {};
     constructor(public afAuth: AngularFireAuth,
+                private loginService: LogInService,
                 private injector: Injector) { /**/ }
 
     public loginWithEMail() {
@@ -41,7 +42,7 @@ export class LoginComponent {
     public setUserInfo(user) {
         const currentUser =  {
             email: user.email,
-            fullName: user.displayName
+            displayName: user.displayName
         };
 
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -52,10 +53,12 @@ export class LoginComponent {
         // provitional solution for a bug in router
         // https://stackoverflow.com/questions/48325743/routing-child-to-parent-is-
         // not-working-when-navigates-in-angular
-        const routerService = this.injector.get(Router);
+        /* const routerService = this.injector.get(Router);
         const ngZone = this.injector.get(NgZone);
         ngZone.run(() => {
-            routerService.navigate(['/ads'], { skipLocationChange: true });
-        });
+            routerService.navigate(['/home'], { skipLocationChange: true });
+        }); */
+
+        this.loginService.redirectToHome();
       }
 }

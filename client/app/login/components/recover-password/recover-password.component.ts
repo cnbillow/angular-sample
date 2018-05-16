@@ -5,7 +5,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
   selector: 'app-recover-password',
   templateUrl: './recover-password.component.html',
   styleUrls: ['./recover-password.component.scss'],
-  providers: [AngularFireAuth],
 })
 export class RecoverPasswordComponent {
   @Input() public email: string;
