@@ -16,25 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 // You can get runtime information about the current platform and the appId by injection.
 
-import { storeFreeze } from 'ngrx-store-freeze';
-
 import { environment } from '../environments/environment';
 
-import { StoreModule, MetaReducer } from '@ngrx/store';
-/* import { userReducer } from './state/reducers/user.reducer';
- */
-import { EffectsModule } from '@ngrx/effects';
-/* import { UserEffects } from './state/effects/user.effects';
- */
-
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { LoginModule } from './login/login.module';
 import { AuthGuard } from './_guards/auth.guard';
 
 /* tslint:disable-next-line */
-export const metaReducers: MetaReducer<any>[] = !environment.production
-  ? [storeFreeze]
-  : [];
 
 @NgModule({
   declarations: [
@@ -43,16 +30,12 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
   imports: [
     LoginModule,
     AngularFireModule.initializeApp(environment.firebase),
-    BrowserModule.withServerTransition({ appId: 'angular-sample' }),
     environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
     HttpClientModule,
     HttpModule,
     BrowserAnimationsModule,
     BrowserTransferStateModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, { metaReducers }),
-    EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   bootstrap: [AppComponent],
   providers: [AuthGuard]

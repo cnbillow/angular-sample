@@ -10,20 +10,19 @@ export function loadModule(module) {
 }
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: './home/home.module#HomeModule',
-    pathMatch: 'full',
-    canActivate: [AuthGuard]
-  },
+
   {
     path: 'login',
     component: LoginComponent,
-    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    loadChildren: './home/home.module#HomeModule',
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: 'dsads'
   },
 ];
 

@@ -20,23 +20,32 @@ export class LoginComponent {
         const credential = firebase.default.auth.EmailAuthProvider.
             credential(this.credential.email, this.credential.password);
         this.afAuth.auth.signInWithEmailAndPassword(this.credential.email, this.credential.password)
-            .then(() => {
-                this.redirectToHome();
-            });
+            .then((res) => {
+                this.setUserInfo(res.user);
+        });
     }
 
     public loginGoogle() {
         this.afAuth.auth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider())
-        .then(() => {
-            this.redirectToHome();
-            return;
+        .then((res) => {
+            this.setUserInfo(res.user);
         });
     }
     public loginFacebook() {
         this.afAuth.auth.signInWithPopup(new firebase.default.auth.FacebookAuthProvider())
-        .then(() => {
-            this.redirectToHome();
+        .then((res) => {
+            this.setUserInfo(res.user);
         });
+    }
+
+    public setUserInfo(user) {
+        const currentUser =  {
+            email: user.email,
+            fullName: user.displayName
+        };
+
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        this.redirectToHome();
     }
 
     public redirectToHome(): void {
@@ -46,7 +55,7 @@ export class LoginComponent {
         const routerService = this.injector.get(Router);
         const ngZone = this.injector.get(NgZone);
         ngZone.run(() => {
-          routerService.navigate(['/home'], { skipLocationChange: true });
+            routerService.navigate(['/ads'], { skipLocationChange: true });
         });
       }
 }
