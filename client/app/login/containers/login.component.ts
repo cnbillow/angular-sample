@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import { firebase } from '@firebase/app';
 import { Router } from '@angular/router';
 import { LogInService } from '../services/login.service';
 
@@ -12,53 +12,39 @@ import { LogInService } from '../services/login.service';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-    public credential: any = {};
+    public invalidForm: boolean;
+    public myUserGroup: FormGroup;
+
     constructor(public afAuth: AngularFireAuth,
-                private loginService: LogInService,
-                private injector: Injector) { /**/ }
+                private formBuilder: FormBuilder,
+                private loginService: LogInService) {
+
+                    this.myUserGroup = this.formBuilder.group({
+                        email: ['', [Validators.required, Validators.email]],
+                        password: ['', [Validators.required, Validators.minLength(8)]],
+                    });
+                 }
 
     public loginWithEMail() {
-        const credential = firebase.default.auth.EmailAuthProvider.
-            credential(this.credential.email, this.credential.password);
-        this.afAuth.auth.signInWithEmailAndPassword(this.credential.email, this.credential.password)
+        const credential =  this.myUserGroup.value;
+        this.afAuth.auth.signInWithEmailAndPassword(
+            credential.email,
+            credential.password)
             .then((res) => {
-                this.setUserInfo(res.user);
+                this.loginService.setUserInfo(res.user);
         });
     }
 
     public loginGoogle() {
-        this.afAuth.auth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider())
+        this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
         .then((res) => {
-            this.setUserInfo(res.user);
+            this.loginService.setUserInfo(res.user);
         });
     }
     public loginFacebook() {
-        this.afAuth.auth.signInWithPopup(new firebase.default.auth.FacebookAuthProvider())
+        this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
         .then((res) => {
-            this.setUserInfo(res.user);
+            this.loginService.setUserInfo(res.user);
         });
     }
-
-    public setUserInfo(user) {
-        const currentUser =  {
-            email: user.email,
-            displayName: user.displayName
-        };
-
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        this.redirectToHome();
-    }
-
-    public redirectToHome(): void {
-        // provitional solution for a bug in router
-        // https://stackoverflow.com/questions/48325743/routing-child-to-parent-is-
-        // not-working-when-navigates-in-angular
-        /* const routerService = this.injector.get(Router);
-        const ngZone = this.injector.get(NgZone);
-        ngZone.run(() => {
-            routerService.navigate(['/home'], { skipLocationChange: true });
-        }); */
-
-        this.loginService.redirectToHome();
-      }
 }

@@ -3,46 +3,48 @@
         <div class="card-body">
             <h4>Sign in</h4>
             <span>with your Account</span>
-            <form class="form mt-2">
+            <div [formGroup]="myUserGroup"
+                 class="form mt-2">
                 <div class="form-group">
                     <label for="email"
                            class="bmd-label-floating">Email address</label>
-                    <input type="email"
-                           [ngModel]="credential?.email"
-                           (ngModelChange)="credential.email=$event"
-                           name="email"
-                           class="form-control"
-                           id="email">
+                    <input formControlName="email"
+                           class="form-control">
+                    <span *ngIf="myUserGroup.controls.email.touched  && myUserGroup.controls.email.errors?.email"
+                          class="bmd-error">Use a valid Email</span>
+                    <span *ngIf="myUserGroup.controls.email.touched  && myUserGroup.controls.email.errors?.required"
+                          class="bmd-error">Email is required</span>
                 </div>
                 <div class="form-group">
                     <label for="password"
                            class="bmd-label-floating">Password</label>
                     <input type="password"
-                           [ngModel]="credential?.password"
-                           (ngModelChange)="credential.password=$event"
-                           name="password"
-                           class="form-control"
-                           id="password">
-                </div>
+                           formControlName="password"
+                           class="form-control">
+                    <span *ngIf="myUserGroup.controls.password.errors?.minlength"
+                          class="bmd-error">Use more than 8 characters</span>
 
+                    <span *ngIf="myUserGroup.controls.password.touched  && myUserGroup.controls.password.errors?.required"
+                          class="bmd-error">Password is required</span>
+                </div>
                 <p><a href="#"
                        data-toggle="modal"
                        class="disable-link"
                        data-target="#recoverPassword">Forgot Password?</a></p>
-                <app-recover-password [email]="credential?.email"></app-recover-password>
-                <h6>You can create a new account in the following link</h6>
+                <app-recover-password [email]="myUserGroup.controls.email.value"></app-recover-password>
+                <span>You can create a new account in the following link</span>
+                <span class="bmd-error"
+                      *ngIf="invalidForm">You can create a new account in the following link</span>
                 <div class="actions mt-5">
-                    <p class=""><a href="#" routerLink="/create">Create account</a></p>
-                    <button type="button"
+                    <p class=""><a href="#"
+                           routerLink="/create">Create account</a></p>
+                    <button type="submit"
+                            [disabled]="myUserGroup.invalid"
                             class="btn btn-raised btn-primary"
                             (click)="loginWithEMail()">
                     Log In</button>
-
-
                 </div>
-
-
-            </form>
+            </div>
             <div class="social-networks mt-5">
                 <button type="button"
                         class="btn btn-raised btn-danger"
@@ -53,10 +55,8 @@
                         class="btn btn-raised btn-info facebook"
                         (click)="loginFacebook()">
                     <span>Log in with Facebook</span>
-            </button>
-
+                </button>
             </div>
-
         </div>
     </div>
 </div>
