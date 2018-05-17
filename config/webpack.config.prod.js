@@ -98,7 +98,7 @@ module.exports = (options) => {
     if (options.isPwa) {
         production.plugins.push(new CopyWebpackPlugin([
             { from: 'client/manifest.json', to: '' },
-            { from: 'client/sw.js', to: '' }
+            { from: 'client/sw.js', to: '' },
         ]))
     }
     return production;

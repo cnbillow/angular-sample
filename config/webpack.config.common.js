@@ -8,9 +8,7 @@ const commonConfig = {
     entry: {
         'polyfills': './client/polyfills.ts',
         'app': './client/main.ts',
-        'styles': './client/styles.css'
     },
-
     resolve: {
         extensions: ['.ts', '.js']
     },
@@ -28,13 +26,6 @@ const commonConfig = {
             {
                 test: /\.scss$/,
                 use: ['to-string-loader', 'css-loader', 'sass-loader'],
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    "style-loader",
-                    "css-loader"
-                ]
             }
         ]
     },
@@ -45,6 +36,7 @@ const commonConfig = {
         }),
         new CopyWebpackPlugin([
             { from: 'client/assets', to: 'assets' },
+            { from: 'client/styles.css', to: '' },
           ]),
     ]
 };
