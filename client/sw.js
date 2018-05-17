@@ -1,8 +1,9 @@
-const version = 10;
+const version = 12;
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(cacheName).then(function(cache) {
+      self.skypWaiting();
       return cache.addAll(
         [
           'https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css',
