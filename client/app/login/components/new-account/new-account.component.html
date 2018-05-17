@@ -3,53 +3,65 @@
         <div class="card-body">
             <h4>Create Account</h4>
             <span>Fill information to create a new user</span>
-            <form class="form mt-2">
+
+            <div [formGroup]="newUserGroup"
+                 class="form mt-2">
                 <div class="form-group">
-                    <label for="full-email"
-                           class="bmd-label-floating">Full Name</label>
-                    <input type="full-email"
-                           [ngModel]="user?.displayName"
-                           (ngModelChange)="user.displayName=$event"
-                           name="full-email"
-                           class="form-control"
-                           id="full-email">
+                    <label for="email"
+                           class="bmd-label-floating">Full name</label>
+                    <input formControlName="fullname"
+                           class="form-control">
+                    <span *ngIf="newUserGroup.controls.fullname.touched  && newUserGroup.controls.fullname.errors?.required"
+                          class="bmd-error">Fullname is required</span>
                 </div>
-                
                 <div class="form-group">
-                    <label for="new-email"
-                           class="bmd-label-floating">email address</label>
-                    <input type="new-email"
-                           [ngModel]="user?.email"
-                           (ngModelChange)="user.email=$event"
-                           name="new-email"
-                           class="form-control"
-                           id="new-email">
+                    <label for="email"
+                           class="bmd-label-floating">Email address</label>
+                    <input formControlName="email"
+                           class="form-control">
+                    <span *ngIf="newUserGroup.controls.email.touched  && newUserGroup.controls.email.errors?.email"
+                          class="bmd-error">Use a valid Email</span>
+                    <span *ngIf="newUserGroup.controls.email.touched  && newUserGroup.controls.email.errors?.required"
+                          class="bmd-error">Email is required</span>
                 </div>
                 <div class="form-group">
                     <label for="password"
                            class="bmd-label-floating">Password</label>
                     <input type="password"
-                           [ngModel]="user?.password"
-                           (ngModelChange)="user.password=$event"
-                           name="password"
-                           class="form-control"
-                           id="password">
+                           formControlName="password"
+                           class="form-control">
+                    <span *ngIf="newUserGroup.controls.password.errors?.minlength"
+                          class="bmd-error">Use more than 8 characters</span>
+
+                    <span *ngIf="newUserGroup.controls.password.touched  && newUserGroup.controls.password.errors?.required"
+                          class="bmd-error">Password is required</span>
                 </div>
 
-              
-                <div class="actions mt-5">
-                    <p class=""><a href="#" routerLink="/">Back</a></p>
+                <div class="form-group">
+                    <label for="confirmPassword"
+                           class="bmd-label-floating">Confirm Password</label>
+                    <input type="password"
+                           formControlName="confirmPassword"
+                           class="form-control">
+                    <span *ngIf="newUserGroup.controls.confirmPassword.errors?.minlength"
+                          class="bmd-error">Use more than 8 characters</span>
 
+                    <span *ngIf="newUserGroup.controls.confirmPassword.touched  && newUserGroup.controls.confirmPassword.errors?.required"
+                          class="bmd-error">Password is required</span>
+                    <span *ngIf="newUserGroup.controls.confirmPassword.touched  && newUserGroup.controls.confirmPassword.errors?.MatchPassword"
+                          class="bmd-error">Password not match</span>
+                </div>
+
+                <div class="actions mt-5">
+                    <p class=""><a href="#"
+                           routerLink="/">Back</a></p>
                     <button type="button"
+                            [disabled]="newUserGroup.invalid"
                             class="btn btn-raised btn-primary"
                             (click)="createAccount()">
-                    Crete Account</button>
-
-
+                    Create Account</button>
                 </div>
-
-
-            </form>
-          </div>
+            </div>
+        </div>
     </div>
 </div>
