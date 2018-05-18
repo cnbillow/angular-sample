@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './containers/home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { RouterModule } from '@angular/router';
-import { NavBarModule } from '../../nav-bar/nav-bar.module';
+import { NavBarModule } from '../nav-bar/nav-bar.module';
 
 @NgModule({
     declarations: [ HomeComponent ],

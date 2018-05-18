@@ -33,7 +33,7 @@ export class NewAccountComponent {
     this.afAuth.auth.createUserWithEmailAndPassword(
       newUser.email, newUser.password).then((res) => {
         this.loginService.setUserInfo(res.user);
-      });
+    });
 
   }
 

@@ -1,73 +1,21 @@
 <!doctype html>
 <html lang="en">
-
 <head>
+  <meta charset="utf-8">
+  <title>TestApp</title>
+  <base href="/">
 
-    <meta charset="utf-8">
-    <title>MeanStackMin</title>
-    <base href="/">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="manifest"
-          href="manifest.json">
-    <link href="./assets/styles/bootstrap-material-design.min.css"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
-    <style>
-        html,
-        body {
-            font-family: 'Roboto', sans-serif;
-            height: 100%;
-        }
-    </style>
-    <link href="./styles.css"
-          rel="stylesheet"></link>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
-    <meta name="theme-color"
-          content="#673ab7">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
 </head>
-
 <body>
-
-    <app-root>
-        <div id="loading"></div>
-    </app-root>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
-            integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
-            crossorigin="anonymous"></script>
-    <script src="./assets/javascript/bootstrap-material-design.min.js"
-            crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function() {
-            $('body').bootstrapMaterialDesign();
-        });
-    </script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    // Registration was successful
-                }, function(err) {
-                    // registration failed :(
-                });
-            });
-        }
-    </script>
-
-
-
-    <noscript>
-    <h3 style="color: #673ab7; font-family: Helvetica; margin: 2rem;">
-      Sorry, but app is not available without javascript
-    </h3>
-  </noscript>
+  <app-root></app-root>
+  <noscript>
+      <h3 style="color: #673ab7; font-family: Helvetica; margin: 2rem;">
+        Sorry, but app is not available without javascript
+      </h3>
+    </noscript>
 </body>
-
 </html>

@@ -1,48 +1,29 @@
-import { NgModule, PLATFORM_ID, APP_ID, Inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { BrowserTransferStateModule } from '@angular/platform-browser';
-import { ServiceWorkerModule } from '@angular/service-worker';
-
-// firebasse
-import { AngularFireModule } from 'angularfire2';
-
-// app
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-// You can get runtime information about the current platform and the appId by injection.
-
-import { environment } from '../environments/environment';
-
+import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 import { AuthGuard } from './_guards/auth.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from 'angularfire2';
 
-/* tslint:disable-next-line */
+import { environment } from '../environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
-    LoginModule,
     AngularFireModule.initializeApp(environment.firebase),
-    environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
-    HttpClientModule,
-    BrowserAnimationsModule,
-    BrowserTransferStateModule,
+    LoginModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
-  bootstrap: [AppComponent],
-  providers: [AuthGuard]
+  providers: [AuthGuard],
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: object,
-    @Inject(APP_ID) private appId: string) {
-    const platform = isPlatformBrowser(platformId) ?
-      'in the browser' : 'on the server';
-  }
-}
+export class AppModule { }

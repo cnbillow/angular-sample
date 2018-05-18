@@ -5,17 +5,21 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { firebase } from '@firebase/app';
 import { Router } from '@angular/router';
 import { LogInService } from '../services/login.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RecoverPasswordComponent } from '../components/recover-password/recover-password.component';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
+    entryComponents: [RecoverPasswordComponent]
 })
 export class LoginComponent {
     public invalidForm: boolean;
     public myUserGroup: FormGroup;
 
     constructor(public afAuth: AngularFireAuth,
+                public dialog: MatDialog,
                 private formBuilder: FormBuilder,
                 private loginService: LogInService) {
 
@@ -47,4 +51,18 @@ export class LoginComponent {
             this.loginService.setUserInfo(res.user);
         });
     }
+
+    openDialog(): void {
+        const credential =  this.myUserGroup.value;
+        const dialogRef = this.dialog.open(RecoverPasswordComponent, {
+          width: '20rem',
+          data: { email: credential.email }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+              this.afAuth.auth.sendPasswordResetEmail(result);
+          }
+        });
+      }
 }

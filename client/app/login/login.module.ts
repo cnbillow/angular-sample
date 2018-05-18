@@ -7,11 +7,18 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
 import { NewAccountComponent } from './components/new-account/new-account.component';
 import { RouterModule } from '@angular/router';
 import { LogInService } from './services/login.service';
+import { SharedModule } from '../shared/shared.module';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireModule } from 'angularfire2';
 
 @NgModule({
     declarations: [LoginComponent, RecoverPasswordComponent, NewAccountComponent],
-    imports: [CommonModule, LoginRoutingModule, FormsModule, RouterModule, ReactiveFormsModule],
-    providers: [LogInService, AngularFireAuth]
+    imports: [
+        AngularFireModule,
+        CommonModule,
+        SharedModule,
+        LoginRoutingModule, FormsModule, RouterModule, ReactiveFormsModule],
+    providers: [LogInService, AngularFireAuth],
+    entryComponents: [RecoverPasswordComponent]
 })
 export class LoginModule { }

@@ -1,62 +1,37 @@
 <div class="login">
-    <div class="card">
-        <div class="card-body">
-            <h4>Sign in</h4>
-            <span>with your Account</span>
-            <div [formGroup]="myUserGroup"
-                 class="form mt-2">
-                <div class="form-group">
-                    <label for="email"
-                           class="bmd-label-floating">Email address</label>
-                    <input formControlName="email"
-                           class="form-control">
-                    <span *ngIf="myUserGroup.controls.email.touched  && myUserGroup.controls.email.errors?.email"
-                          class="bmd-error">Use a valid Email</span>
-                    <span *ngIf="myUserGroup.controls.email.touched  && myUserGroup.controls.email.errors?.required"
-                          class="bmd-error">Email is required</span>
-                </div>
-                <div class="form-group">
-                    <label for="password"
-                           class="bmd-label-floating">Password</label>
-                    <input type="password"
-                           formControlName="password"
-                           class="form-control">
-                    <span *ngIf="myUserGroup.controls.password.errors?.minlength"
-                          class="bmd-error">Use more than 8 characters</span>
+  <mat-card class="card">
+    <h2>Sign in</h2>
+    <span>with your Account</span>
+    <div [formGroup]="myUserGroup" class="user-group">
+      <mat-form-field>
+        <input matInput placeholder="Enter your email" formControlName="email" required>
+        <mat-error *ngIf="myUserGroup.controls.email.touched  && myUserGroup.controls.email.errors?.email">Use a valid Email</mat-error>
+        <mat-error *ngIf="myUserGroup.controls.email.touched  && myUserGroup.controls.email.errors?.required">Email is required</mat-error>
+      </mat-form-field>
 
-                    <span *ngIf="myUserGroup.controls.password.touched  && myUserGroup.controls.password.errors?.required"
-                          class="bmd-error">Password is required</span>
-                </div>
-                <p><a href="#"
-                       data-toggle="modal"
-                       class="disable-link"
-                       data-target="#recoverPassword">Forgot Password?</a></p>
-                <app-recover-password [email]="myUserGroup.controls.email.value"></app-recover-password>
-                <span>You can create a new account in the following link</span>
-                <span class="bmd-error"
-                      *ngIf="invalidForm">You can create a new account in the following link</span>
-                <div class="actions mt-5">
-                    <p class=""><a href="#"
-                           routerLink="/create">Create account</a></p>
-                    <button type="submit"
-                            [disabled]="myUserGroup.invalid"
-                            class="btn btn-raised btn-primary"
-                            (click)="loginWithEMail()">
-                    Log In</button>
-                </div>
-            </div>
-            <div class="social-networks mt-5">
-                <button type="button"
-                        class="btn btn-raised btn-danger"
-                        (click)="loginGoogle()">
-                    <span>Log in with Google</span>
-                    </button>
-                <button type="button"
-                        class="btn btn-raised btn-info facebook"
-                        (click)="loginFacebook()">
-                    <span>Log in with Facebook</span>
-                </button>
-            </div>
-        </div>
+      <mat-form-field>
+        <input matInput placeholder="Enter your password" formControlName="password" required>
+        <mat-error *ngIf="myUserGroup.controls.password.errors?.minlength">Use more than 8 characters</mat-error>
+        <mat-error *ngIf="myUserGroup.controls.password.touched  && myUserGroup.controls.password.errors?.required">Password is required</mat-error>
+      </mat-form-field>
+
+      <a (click)="openDialog()" class="forgot-password">Forgot Password?</a>
+
+      <span>You can create a new account in the following link</span>
+      <span class="bmd-error" *ngIf="invalidForm">You can create a new account in the following link</span>
+      <div class="actions mt-5">
+        <p class="">
+          <a href="#" routerLink="/create">Create account</a>
+        </p>
+        <button mat-raised-button color="primary" [disabled]="myUserGroup.invalid" (click)="loginWithEMail()">Log in</button>
+
+      </div>
+
+      <div class="social-networks">
+        <button mat-raised-button color="primary" class="facebook" routerLink="home" (click)="loginFacebook()">Log in with Facebook</button>
+        <button mat-raised-button color="warn" (click)="loginGoogle()">Log in with Google</button>
+      </div>
     </div>
+
+  </mat-card>
 </div>
