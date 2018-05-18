@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 // You can get runtime information about the current platform and the appId by injection.
 
 import { environment } from '../environments/environment';
@@ -32,7 +31,6 @@ import { AuthGuard } from './_guards/auth.guard';
     AngularFireModule.initializeApp(environment.firebase),
     environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
     HttpClientModule,
-    HttpModule,
     BrowserAnimationsModule,
     BrowserTransferStateModule,
     AppRoutingModule,
