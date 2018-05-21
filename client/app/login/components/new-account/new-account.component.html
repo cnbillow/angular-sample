@@ -1,0 +1,39 @@
+<div class="login">
+  <mat-card class="card">
+    <h2>Create new account</h2>
+    <span>Complete the form please</span>
+    <div [formGroup]="newUserGroup" class="user-group">
+
+      <mat-form-field>
+        <input matInput placeholder="Full Name" formControlName="fullname" required>
+        <mat-error *ngIf="newUserGroup.controls.fullname.touched  && newUserGroup.controls.fullname.errors?.required">Field required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter your email" formControlName="email" required>
+        <mat-error *ngIf="newUserGroup.controls.email.touched  && newUserGroup.controls.email.errors?.email">Use a valid Email</mat-error>
+        <mat-error *ngIf="newUserGroup.controls.email.touched  && newUserGroup.controls.email.errors?.required">Email is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="password" matInput placeholder="Enter your password" formControlName="password" required>
+        <mat-error *ngIf="newUserGroup.controls.password.errors?.minlength">Use more than 8 characters</mat-error>
+        <mat-error *ngIf="newUserGroup.controls.password.touched  && newUserGroup.controls.password.errors?.required">Password is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="password" matInput placeholder="Confirm your password" formControlName="confirmPassword" required>
+        <mat-error *ngIf="newUserGroup.controls.confirmPassword.errors?.minlength">Use more than 8 characters</mat-error>
+        <mat-error *ngIf="newUserGroup.controls.confirmPassword.touched  && newUserGroup.controls.confirmPassword.errors?.MatchPassword">Password does not match</mat-error>
+      </mat-form-field>
+
+      <div class="actions mt-5">
+        <p class="">
+          <a href="#" routerLink="/">Back</a>
+        </p>
+        <button mat-raised-button color="primary" [disabled]="newUserGroup.invalid" (click)="createAccount()">
+          Create Account</button>
+      </div>
+    </div>
+  </mat-card>
+</div>

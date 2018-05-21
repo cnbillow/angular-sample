@@ -45,4 +45,6 @@ Thumbs.db
 
 # tokens
 
-.env*
+.env
+package-lock.json
+yarn.lock

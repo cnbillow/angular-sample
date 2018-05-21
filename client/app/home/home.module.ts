@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './containers/home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { RouterModule } from '@angular/router';
+import { NavBarModule } from '../nav-bar/nav-bar.module';
 
 @NgModule({
-    declarations: [ HomeComponent ],
+    declarations: [HomeComponent],
     imports: [
+        NavBarModule,
         CommonModule,
         RouterModule,
         HomeRoutingModule,
@@ -14,4 +16,4 @@ import { RouterModule } from '@angular/router';
     exports: [],
     providers: [],
 })
-export class HomeModule {}
+export class HomeModule { }

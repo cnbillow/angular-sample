@@ -1,0 +1,31 @@
+.card {
+  padding: 3rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .card {
+      width: 20rem;
+  }
+}
+
+.actions {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+h2 {
+  font-weight: 500;
+}
+
+.user-group {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column
+}
+
+.forgot-password {
+  padding-bottom: 2rem;
+}
