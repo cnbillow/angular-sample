@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CurrentUser } from '../models/current-user';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-nav-bar',
@@ -7,19 +9,22 @@ import { Router } from '@angular/router';
     styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
-    public currentUser;
+    public currentUser: CurrentUser;
 
-    constructor(private router: Router) {
-        this.currentUser = this.getUserInfo();
+    constructor(private router: Router,
+        private authService: AuthService) {
     }
 
-    public getUserInfo() {
+    public getUserInfo(): CurrentUser {
         const currentUser = localStorage.getItem('currentUser');
         return JSON.parse(currentUser);
     }
 
-    public logOut() {
-        localStorage.removeItem('currentUser');
-        this.router.navigate(['/login']);
+    public logOut(): void {
+        this.authService.logout()
+        .then((res) => {
+            this.router.navigate(['login']);
+        });
+
     }
 }

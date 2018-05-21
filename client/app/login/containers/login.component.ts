@@ -1,68 +1,75 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-
-import { AngularFireAuth } from 'angularfire2/auth';
-import { firebase } from '@firebase/app';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LogInService } from '../services/login.service';
 import { MatDialog } from '@angular/material/dialog';
-import { RecoverPasswordComponent } from '../components/recover-password/recover-password.component';
+import { AngularFireAuth } from 'angularfire2/auth';
 
+import { RecoverPasswordComponent } from '../components/recover-password/recover-password.component';
+import { AuthService } from '../../services/auth.service';
+
+import { map } from 'rxjs/operators';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
     entryComponents: [RecoverPasswordComponent]
 })
+
 export class LoginComponent {
     public invalidForm: boolean;
     public myUserGroup: FormGroup;
 
     constructor(public afAuth: AngularFireAuth,
-                public dialog: MatDialog,
-                private formBuilder: FormBuilder,
-                private loginService: LogInService) {
-
-                    this.myUserGroup = this.formBuilder.group({
-                        email: ['', [Validators.required, Validators.email]],
-                        password: ['', [Validators.required, Validators.minLength(8)]],
-                    });
-                 }
+        public dialog: MatDialog,
+        private router: Router,
+        private formBuilder: FormBuilder,
+        private authService: AuthService) {
+        this.authService.isLoggedIn().pipe(map(auth => {
+            if (auth) {
+                this.router.navigate(['/home']);
+                return false;
+            }
+        })).subscribe();
+        this.myUserGroup = this.formBuilder.group({
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(8)]],
+        });
+    }
 
     public loginWithEMail() {
-        const credential =  this.myUserGroup.value;
-        this.afAuth.auth.signInWithEmailAndPassword(
-            credential.email,
-            credential.password)
+        const credential = this.myUserGroup.value;
+        this.authService.loginWithEMail(credential)
             .then((res) => {
-                this.loginService.setUserInfo(res.user);
-        });
+                this.router.navigate(['home']);
+            });
     }
 
     public loginGoogle() {
-        this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-        .then((res) => {
-            this.loginService.setUserInfo(res.user);
-        });
+        this.authService.loginGoogle()
+            .then((res) => {
+                this.router.navigate(['home']);
+            });
     }
     public loginFacebook() {
-        this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-        .then((res) => {
-            this.loginService.setUserInfo(res.user);
-        });
+        this.authService.loginFacebook()
+            .then((res) => {
+                this.router.navigate(['home']);
+            });
     }
 
-    openDialog(): void {
-        const credential =  this.myUserGroup.value;
+    public openDialog(): void {
+        const credential = this.myUserGroup.value;
         const dialogRef = this.dialog.open(RecoverPasswordComponent, {
-          width: '20rem',
-          data: { email: credential.email }
+            width: '20rem',
+            data: { email: credential.email }
         });
 
         dialogRef.afterClosed().subscribe(result => {
-          if (result) {
-              this.afAuth.auth.sendPasswordResetEmail(result);
-          }
+            if (result) {
+                this.afAuth.auth.sendPasswordResetEmail(result);
+            }
         });
-      }
+    }
+
+
 }

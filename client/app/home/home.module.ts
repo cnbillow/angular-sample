@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { NavBarModule } from '../nav-bar/nav-bar.module';
 
 @NgModule({
-    declarations: [ HomeComponent ],
+    declarations: [HomeComponent],
     imports: [
         NavBarModule,
         CommonModule,
@@ -16,4 +16,4 @@ import { NavBarModule } from '../nav-bar/nav-bar.module';
     exports: [],
     providers: [],
 })
-export class HomeModule {}
+export class HomeModule { }

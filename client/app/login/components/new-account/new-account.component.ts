@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { CurrentUser } from '../../../models/current-user';
-import { LogInService } from '../../services/login.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidation } from '../../validators/password-validator';
 
@@ -16,8 +15,7 @@ export class NewAccountComponent {
 
   constructor(
     public afAuth: AngularFireAuth,
-    private formBuilder: FormBuilder,
-    private loginService: LogInService) {
+    private formBuilder: FormBuilder) {
     this.newUserGroup = this.formBuilder.group({
       fullname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -31,10 +29,7 @@ export class NewAccountComponent {
   public createAccount() {
     const newUser = this.newUserGroup.value;
     this.afAuth.auth.createUserWithEmailAndPassword(
-      newUser.email, newUser.password).then((res) => {
-        this.loginService.setUserInfo(res.user);
-    });
-
+      newUser.email, newUser.password);
   }
 
 }

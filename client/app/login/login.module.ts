@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { NewAccountComponent } from './components/new-account/new-account.component';
 import { RouterModule } from '@angular/router';
-import { LogInService } from './services/login.service';
 import { SharedModule } from '../shared/shared.module';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
@@ -18,7 +17,7 @@ import { AngularFireModule } from 'angularfire2';
         CommonModule,
         SharedModule,
         LoginRoutingModule, FormsModule, RouterModule, ReactiveFormsModule],
-    providers: [LogInService, AngularFireAuth],
+    providers: [ AngularFireAuth ],
     entryComponents: [RecoverPasswordComponent]
 })
 export class LoginModule { }
