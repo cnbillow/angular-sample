@@ -1,27 +1,170 @@
-# TestApp
+# Angular Sample
+https://angular-sample-pwa.herokuapp.com/
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
+* Angular Universal
+* Angular Material 
+* Service Workers
+* NG-RX 
+* Jasmine
+* Node
+* Express
+* Mongoose
+* Heroku
+* Travis
+* Webpack
 
-## Development server
+## Table of Contents
+ - [General folder structure](#general-folder-structure)
+ - [Front End folder structure](#front-end-folder-structure)
+ - [Back End folder structure](#back-end-folder-structure)
+ - [Configuration](#back-end-folder-structure)
+ - [Installation](#back-end-folder-structure)
+ - [Development commands](#development)
+ - [Production commands](#production)
+ - [Serving App](#serving-application)
+ - [Usefull Resources](#usefull-resources)
+ 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## General folder structure
+```
+.
+├── client
+├── config
+├── server
+```
+[Go Top](#table-of-contents)
 
-## Code scaffolding
+## Front End folder Structure 
+```
+client
+├── app
+│   ├── app.component.html
+│   ├── app.component.ts
+│   ├── app.module.ts
+│   ├── services
+│   └── user-management
+│       ├── components
+│       │   ├── user-add-edit
+│       │   └── user-list
+│       ├── containers
+│       ├── models
+│       ├── services
+│       ├── store
+│       │   ├── actions
+│       │   ├── effects
+│       │   ├── index.ts
+│       │   └── reducers
+│       │       ├── index.ts
+│       │       ├── user.reducers.spec.ts
+│       │       └── user.reducers.ts
+│       ├── user-management.module.ts
+├── assets
+│   ├── fonts
+│   ├── images
+│   ├── pages
+│   └── styles
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+[Go Top](#table-of-contents)
 
-## Build
+## Back End folder Structure 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+├── server
+│   ├── models
+│   ├── router
+│   └── server.ts
+```
+[Go Top](#table-of-contents)
 
-## Running unit tests
+## Configuration
+Create a file `.env` and set your mongodb url
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+MONGO_URI = [USER]:[PASS]@[HOST]:[PORT]
+```
 
-## Running end-to-end tests
+Bundle analizer
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+WEBPACK_ANALIZER = 0 || 1
+```
+[Go Top](#table-of-contents)
 
-## Further help
+## Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+It will install and serve the application using angular-universal by default
+
+```
+git clone https://github.com/mzavaletaglobant/angular-sample
+yarn install
+```
+[Go Top](#table-of-contents)
+
+## Development
+Working on development mode
+
+    yarn watch-client
+
+Watch server modifications
+
+    yarn watch-server
+
+[Go Top](#table-of-contents)
+
+
+## Production
+
+Generate Angular production files (it uses aot)
+
+    yarn build-prod
+
+Generate Angular Progresive File apps 
+
+    yarn build-pwa
+
+Generate Client and server Files for deployment 
+
+    yarn build-bundles
+
+[Go Top](#table-of-contents)
+
+
+## Serving application
+
+For serving static Files
+
+    yarn serve-static
+
+For serving server using angular universal
+
+    yarn serve-universal
+    
+[Go Top](#table-of-contents)
+
+## Usefull resources
+Playing with angular universal and progressive web apps
+
+* https://material.angular.io/
+* https://cli.angular.io/
+* https://github.com/mzavaletavargas/angular-starter  
+
+* https://angular.io/guide/universal
+* https://blog.angularindepth.com/using-transferstate-api-in-an-angular-5-universal-app-130f3ada9e5b
+* https://medium.com/google-developer-experts/angular-universal-for-the-rest-of-us-922ca8bac84
+* https://github.com/ng-seed/universal
+
+
+* https://slides.com/webmax/ngsw-ijs-2018/
+* https://angular.io/guide/service-worker-intro
+* https://developers.google.com/web/ilt/pwa/introduction-to-service-worker-slides
+
+
+* https://expressjs.com/en/starter/generator.html
+* http://mongoosejs.com/docs/index.html
+* https://nodejs.org/en/
+
+* https://www.npmjs.com/package/webpack-bundle-analyzer
+
+
+[Go Top](#table-of-contents)
